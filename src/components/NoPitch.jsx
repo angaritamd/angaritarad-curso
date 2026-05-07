@@ -18,9 +18,9 @@ export default function NoPitch() {
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 700, margin: '0 auto', textAlign: 'left' }}>
           {[
-            { n: '0', label: 'Agente activo', sub: 'Desde el primer módulo' },
+            { n: '1', label: 'Agente activo', sub: 'Configurado para ti' },
             { n: '8', label: 'Módulos prácticos', sub: 'Con entregable concreto' },
-            { n: '∞', label: 'Acceso de por vida', sub: 'A tu agente configurado' },
+            { n: '3', label: 'Meses de agente', sub: 'Renovable al terminar' },
           ].map(item => (
             <div key={item.n} style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: 20 }}>
               <div style={{ fontFamily: 'Space Grotesk', fontSize: 36, fontWeight: 400, color: '#fff', letterSpacing: '-0.03em', lineHeight: 1 }}>{item.n}</div>

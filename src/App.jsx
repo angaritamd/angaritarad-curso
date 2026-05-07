@@ -5,6 +5,7 @@ import NoPitch from './components/NoPitch';
 import PracticalDemo from './components/PracticalDemo';
 import Benefits from './components/Benefits';
 import Curriculum from './components/Curriculum';
+import ResourceCards from './components/ResourceCards';
 import Instructor from './components/Instructor';
 import Pricing from './components/Pricing';
 import RegistrationModal from './components/RegistrationModal';
@@ -36,8 +37,9 @@ export default function App() {
         <NoPitch />
         <div style={{ display:'block' }}>
           <PracticalDemo onOpenModal={open} />
-          <Benefits />
           <Curriculum />
+          <Benefits />
+          <ResourceCards onOpenModal={open} />
           <TargetAudience />
           <Instructor />
         </div>
