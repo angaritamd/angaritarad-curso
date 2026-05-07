@@ -1,6 +1,5 @@
 
 
-const CDN = 'https://horizons-cdn.hostinger.com/1b0a5bfe-2477-4a6f-b6d0-9e4cdbc81f2c';
 
 export default function Instructor() {
   return (
@@ -10,12 +9,8 @@ export default function Instructor() {
         <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 64, alignItems: 'start' }} className="instructor-grid">
           {/* Photo + name card */}
           <div>
-            <div style={{ borderRadius: 22, overflow: 'hidden', border: '1px solid #d9d9dd', marginBottom: 20 }}>
-              <img
-                src={`${CDN}/dc06355de16ced818f07b779d15c57b5.png`}
-                alt="Dr. Miguel Angarita"
-                style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', display: 'block' }}
-              />
+            <div style={{ borderRadius: 22, border: '1px solid #d9d9dd', marginBottom: 20, aspectRatio: '1/1', background: '#17171c', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 64, color: 'rgba(255,255,255,0.15)', letterSpacing: '-0.02em' }}>MA</span>
             </div>
             <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 20, color: '#17171c', margin: '0 0 4px', letterSpacing: '-0.01em' }}>
               Dr. Miguel Angarita
