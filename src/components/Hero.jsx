@@ -49,28 +49,48 @@ export default function Hero({ onOpenModal }) {
           </a>
         </div>
 
-        {/* Media band - screenshots + agent card */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16, maxWidth: 900 }}>
-          {/* Main screenshot gallery */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            {[
-              { src: `${CDN}/155820f404a389a4534ca60dede13691.jpg`, caption: 'Dictado → SOAP automático' },
-              { src: `${CDN}/9e8e8eda08e86fdbce8e625311ac48cc.jpg`, caption: 'Consulta clínica en segundos' },
-            ].map((img, i) => (
-              <div key={i} style={{ borderRadius: 22, overflow: 'hidden', border: '1px solid #f2f2f2', position: 'relative' }}>
-                <img src={img.src} alt={img.caption} style={{ width: '100%', height: 220, objectFit: 'cover', display: 'block' }} />
-                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(23,23,28,0.85)', padding: '8px 12px' }}>
-                  <span style={{ color: '#fff', fontSize: 11, fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.05em' }}>{img.caption}</span>
-                </div>
+        {/* Media band - dark chat cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, maxWidth: 900 }}>
+          {/* Card 1 - SOAP */}
+          <div style={{ background: '#17171c', borderRadius: 22, padding: 20, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI</span>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '9px 12px', fontSize: 12, color: '#93939f' }}>
+              Mujer 58a, dolor abdominal, fiebre…
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 8, padding: '10px 12px' }}>
+              <div style={{ fontSize: 12, color: '#d1d5db', lineHeight: 1.7 }}>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>S: </span>Dolor abdominal agudo, fiebre<br/>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>A: </span>Sospecha apendicitis<br/>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>P: </span>Ecografía + cirugía
               </div>
-            ))}
+            </div>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#374151' }}>Dictado → SOAP automático</span>
           </div>
 
-          {/* Agent console card - dark */}
-          <div style={{
-            background: '#17171c', borderRadius: 22, padding: 24, display: 'flex', flexDirection: 'column', gap: 16,
-            border: '1px solid rgba(255,255,255,0.08)',
-          }}>
+          {/* Card 2 - Consulta */}
+          <div style={{ background: '#17171c', borderRadius: 22, padding: 20, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
+              <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI</span>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '9px 12px', fontSize: 12, color: '#93939f' }}>
+              Dame un tip de radiología para hoy
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 8, padding: '10px 12px' }}>
+              <div style={{ fontSize: 12, color: '#d1d5db', lineHeight: 1.7 }}>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>· </span>Busca realce verdadero en TC<br/>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>· </span>&gt;20 UH pre/poscontraste<br/>
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>· </span>RM si zona gris
+              </div>
+            </div>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#374151' }}>Consulta clínica en segundos</span>
+          </div>
+
+          {/* Card 3 - Console */}
+          <div style={{ background: '#17171c', borderRadius: 22, padding: 24, display: 'flex', flexDirection: 'column', gap: 16, border: '1px solid rgba(255,255,255,0.08)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
               <span style={{ color: '#93939f', fontSize: 11, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Angaritarad-AI</span>
@@ -81,15 +101,10 @@ export default function Hero({ onOpenModal }) {
               </div>
               <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 8, padding: '10px 12px' }}>
                 <div style={{ color: '#fca5a5', fontSize: 11, marginBottom: 4, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Respuesta</div>
-                S: Dolor opresivo, irradiado, 2h<br />
-                A: SCA probable<br />
+                S: Dolor opresivo, irradiado, 2h<br/>
+                A: SCA probable<br/>
                 P: ECG + troponinas urgente
               </div>
-            </div>
-            <div style={{ marginTop: 'auto', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {['WhatsApp', 'Supabase', 'Resend'].map(b => (
-                <span key={b} style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 4, padding: '3px 8px', fontSize: 10, color: '#93939f', fontFamily: 'JetBrains Mono, monospace' }}>{b}</span>
-              ))}
             </div>
           </div>
         </div>
@@ -107,10 +122,7 @@ export default function Hero({ onOpenModal }) {
 
       <style>{`
         @media (max-width: 768px) {
-          section > div > div[style*="grid-template-columns: 2fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
-          section > div > div[style*="grid-template-columns: 1fr 1fr"] {
+          section > div > div[style*="grid-template-columns: 1fr 1fr 1fr"] {
             grid-template-columns: 1fr !important;
           }
         }
