@@ -1,7 +1,5 @@
 import { ArrowRight, PlayCircle } from 'lucide-react';
 
-const CDN = 'https://horizons-cdn.hostinger.com/1b0a5bfe-2477-4a6f-b6d0-9e4cdbc81f2c';
-
 export default function Hero({ onOpenModal }) {
   return (
     <section style={{ background: '#fff', paddingTop: 72, paddingBottom: 96, overflow: 'hidden', position: 'relative' }}>
@@ -49,8 +47,8 @@ export default function Hero({ onOpenModal }) {
           </a>
         </div>
 
-        {/* Media band - dark chat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, maxWidth: 900 }}>
+        {/* Three dark chat cards - no images */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, maxWidth: 900 }}>
           {/* Card 1 - SOAP */}
           <div style={{ background: '#17171c', borderRadius: 22, padding: 20, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -64,7 +62,7 @@ export default function Hero({ onOpenModal }) {
               <div style={{ fontSize: 12, color: '#d1d5db', lineHeight: 1.7 }}>
                 <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>S: </span>Dolor abdominal agudo, fiebre<br/>
                 <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>A: </span>Sospecha apendicitis<br/>
-                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>P: </span>Ecografía + cirugía
+                <span style={{ color: '#ef4444', fontFamily: 'JetBrains Mono, monospace' }}>P: </span>Ecografía + valoración quirúrgica
               </div>
             </div>
             <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#374151' }}>Dictado → SOAP automático</span>
@@ -95,12 +93,12 @@ export default function Hero({ onOpenModal }) {
               <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
               <span style={{ color: '#93939f', fontSize: 11, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Angaritarad-AI</span>
             </div>
-            <div style={{ fontSize: 13, color: '#d9d9dd', lineHeight: 1.5 }}>
-              <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '10px 12px', marginBottom: 8, fontSize: 12, color: '#93939f' }}>
-                Paciente 65a dolor torácico opresivo…
-              </div>
-              <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 8, padding: '10px 12px' }}>
-                <div style={{ color: '#fca5a5', fontSize: 11, marginBottom: 4, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Respuesta</div>
+            <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '10px 12px', fontSize: 12, color: '#93939f' }}>
+              Paciente 65a dolor torácico opresivo…
+            </div>
+            <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 8, padding: '10px 12px' }}>
+              <div style={{ color: '#fca5a5', fontSize: 11, marginBottom: 4, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Respuesta</div>
+              <div style={{ fontSize: 13, color: '#fff', lineHeight: 1.6 }}>
                 S: Dolor opresivo, irradiado, 2h<br/>
                 A: SCA probable<br/>
                 P: ECG + troponinas urgente
