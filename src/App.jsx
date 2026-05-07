@@ -7,7 +7,6 @@ import Benefits from './components/Benefits';
 import Curriculum from './components/Curriculum';
 import Instructor from './components/Instructor';
 import Pricing from './components/Pricing';
-import Sidebar from './components/Sidebar';
 import RegistrationModal from './components/RegistrationModal';
 import { FAQ, TargetAudience, FinalCTA, Footer } from './components/Sections';
 
@@ -35,22 +34,12 @@ export default function App() {
       <main>
         <Hero onOpenModal={open} />
         <NoPitch />
-        <div style={{ maxWidth:1120,margin:'0 auto',padding:'0 24px' }}>
-          <div id="main-layout" style={{ display:'grid',gridTemplateColumns:'1fr 320px',gap:48,alignItems:'start' }}>
-            <div>
-              <PracticalDemo onOpenModal={open} />
-              <Benefits />
-              <Curriculum />
-              <div id="sidebar-mobile" style={{ display:'none',padding:'48px 0' }}>
-                <Sidebar onOpenModal={open} />
-              </div>
-              <TargetAudience />
-              <Instructor />
-            </div>
-            <div id="sidebar-desktop">
-              <Sidebar onOpenModal={open} />
-            </div>
-          </div>
+        <div style={{ display:'block' }}>
+          <PracticalDemo onOpenModal={open} />
+          <Benefits />
+          <Curriculum />
+          <TargetAudience />
+          <Instructor />
         </div>
         <Pricing onOpenModal={open} />
         <FAQ />
@@ -59,13 +48,6 @@ export default function App() {
       <Footer onOpenPrivacy={() => setPrivacyOpen(true)} />
       <RegistrationModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onOpenPrivacy={() => { setModalOpen(false); setPrivacyOpen(true); }} />
       <PrivacyModal isOpen={privacyOpen} onClose={() => setPrivacyOpen(false)} />
-      <style>{`
-        @media (max-width: 1024px) {
-          #main-layout { grid-template-columns: 1fr !important; }
-          #sidebar-desktop { display: none !important; }
-          #sidebar-mobile { display: block !important; }
-        }
-      `}</style>
     </div>
   );
 }
