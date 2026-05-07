@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const resources = [
@@ -25,6 +26,8 @@ const resources = [
 ];
 
 export default function ResourceCards({ onOpenModal }) {
+  const [videoOpen, setVideoOpen] = useState(false);
+
   return (
     <section style={{ background: '#fafafa', padding: '96px 24px' }}>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
@@ -48,7 +51,9 @@ export default function ResourceCards({ onOpenModal }) {
                 <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 18, color: '#fff', margin: '0 0 12px', lineHeight: 1.3, letterSpacing: '-0.01em' }}>{r.title}</h3>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, margin: 0 }}>{r.desc}</p>
               </div>
-              <button onClick={onOpenModal} style={{ background: 'rgba(0,0,0,0.85)', border: 'none', padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#fff', fontSize: 13, fontFamily: 'Space Grotesk', fontWeight: 500 }}>
+              <button
+                onClick={i === 1 ? () => setVideoOpen(true) : onOpenModal}
+                style={{ background: 'rgba(0,0,0,0.85)', border: 'none', padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#fff', fontSize: 13, fontFamily: 'Space Grotesk', fontWeight: 500 }}>
                 {r.cta} <ArrowRight size={14} />
               </button>
             </div>
@@ -56,6 +61,31 @@ export default function ResourceCards({ onOpenModal }) {
         </div>
       </div>
       <style>{`@media (max-width: 768px) { .resources-grid { grid-template-columns: 1fr !important; } }`}</style>
+
+      {videoOpen && (
+        <div onClick={() => setVideoOpen(false)} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.9)', zIndex: 999,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24,
+        }}>
+          <div onClick={e => e.stopPropagation()} style={{ width: '100%', maxWidth: 800, position: 'relative' }}>
+            <button onClick={() => setVideoOpen(false)} style={{
+              position: 'absolute', top: -40, right: 0, background: 'none', border: 'none',
+              color: '#fff', cursor: 'pointer', fontSize: 14, fontFamily: 'Space Grotesk',
+            }}>
+              Cerrar ✕
+            </button>
+            <div style={{ position: 'relative', paddingBottom: '177.78%', height: 0, borderRadius: 16, overflow: 'hidden' }}>
+              <iframe
+                src="https://www.youtube.com/embed/wfcNPIwY4rY?autoplay=1"
+                title="AI para Radiólogos — Análisis DICOM por WhatsApp"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
