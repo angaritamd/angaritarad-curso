@@ -8,6 +8,8 @@ const resources = [
     title: 'Cómo dictar una historia clínica en 30 segundos con IA',
     desc: 'El flujo exacto que usan los médicos del programa para acelerar su documentación diaria.',
     cta: 'Descargar guía',
+    ctaLabel: '(requiere registro)',
+    ctaLabelStyle: { fontSize: 11, color: '#93939f', marginLeft: 8 },
   },
   {
     gradient: 'linear-gradient(135deg, #003c33 0%, #065f46 100%)',
@@ -15,6 +17,8 @@ const resources = [
     title: 'IA en radiología: lo que ya funciona hoy en Latinoamérica',
     desc: 'Casos reales de radiólogos colombianos usando agentes en su práctica diaria.',
     cta: 'Ver grabación',
+    ctaLabel: '(free)',
+    ctaLabelStyle: { fontSize: 12, color: '#ef4444', fontWeight: 600, marginLeft: 8 },
   },
   {
     gradient: 'linear-gradient(135deg, #1863dc 0%, #1e40af 100%)',
@@ -22,6 +26,8 @@ const resources = [
     title: 'Red flags clínicas por especialidad — configura tu agente',
     desc: 'Plantilla lista para cargar en tu agente con las alertas más críticas de tu especialidad.',
     cta: 'Obtener checklist',
+    ctaLabel: '(requiere registro)',
+    ctaLabelStyle: { fontSize: 11, color: '#93939f', marginLeft: 8 },
   },
 ];
 
@@ -54,7 +60,11 @@ export default function ResourceCards({ onOpenModal }) {
               <button
                 onClick={i === 1 ? () => setVideoOpen(true) : onOpenModal}
                 style={{ background: 'rgba(0,0,0,0.85)', border: 'none', padding: '14px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', color: '#fff', fontSize: 13, fontFamily: 'Space Grotesk', fontWeight: 500 }}>
-                {r.cta} <ArrowRight size={14} />
+                <span style={{ display: 'flex', alignItems: 'center' }}>
+                  <span>{r.cta}</span>
+                  <span style={r.ctaLabelStyle}>{r.ctaLabel}</span>
+                </span>
+                <ArrowRight size={14} />
               </button>
             </div>
           ))}
