@@ -19,7 +19,7 @@ const plans = [
     strikethrough: '$944.000 COP',
     features: ['WhatsApp conectado a tu agente', 'Panel de supervisión Chatwoot', 'Base de usuarios Supabase', 'Soporte de infraestructura incluido', 'Pago mensual'],
     badge: 'Inscripción abierta',
-    subBadge: 'Inicio: 5 de abril — Cupos limitados',
+    subBadge: 'Inicio: 25 de junio — Cupos limitados',
     highlighted: true,
     tag: 'Médicos & Especialistas',
   },

@@ -30,7 +30,7 @@ export default function Header({ onOpenModal }) {
       {/* Announcement bar */}
       <div style={{ background: '#17171c', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '12px', letterSpacing: '0.05em' }}>
         <span className="mono-label" style={{ color: '#d9d9dd' }}>
-          Inscripción abierta · Inicio 16 de abril · Cupos limitados
+          Inscripción abierta · Inicio 25 de junio · Cupos limitados
         </span>
       </div>
 

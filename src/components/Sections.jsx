@@ -139,7 +139,7 @@ export function Footer({ onOpenPrivacy }) {
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>© 2026 AngaritaRad. Bogotá, Colombia.</span>
+          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>© 2026 Saludchat SAAS. Bogotá, Colombia.</span>
           <button onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, color: 'rgba(255,255,255,0.3)', textDecoration: 'underline' }}>
             Privacidad & Términos
           </button>

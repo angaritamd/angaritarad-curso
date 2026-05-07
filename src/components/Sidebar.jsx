@@ -18,7 +18,7 @@ export default function Sidebar({ onOpenModal }) {
           <h2 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 18, color: '#fff', margin: '0 0 8px' }}>Inscripción abierta</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#ef4444', marginBottom: 16 }}>
             <Clock size={14} />
-            <span style={{ fontSize: 13, color: '#fca5a5' }}>Inicio: 16 de abril · Cupos limitados</span>
+            <span style={{ fontSize: 13, color: '#fca5a5' }}>Inicio: 25 de junio · Cupos limitados</span>
           </div>
           <div>
             <span style={{ textDecoration: 'line-through', fontSize: 13, color: '#616161', display: 'block' }}>$944.000 COP</span>
