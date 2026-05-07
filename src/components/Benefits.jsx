@@ -57,15 +57,13 @@ export default function Benefits() {
               }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)'}
                 onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}>
-                <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0, marginTop: 2 }}>{b.icon}</span>
-                  <div>
-                    <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 16, color: '#17171c', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
-                      {b.title}
-                    </h3>
-                    <p style={{ fontSize: 14, lineHeight: 1.6, color: '#616161', margin: 0 }}>{b.body}</p>
-                  </div>
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 16, flexShrink: 0 }}>
+                  {b.icon}
                 </div>
+                <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 16, color: '#17171c', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
+                  {b.title}
+                </h3>
+                <p style={{ fontSize: 14, lineHeight: 1.6, color: '#616161', margin: 0 }}>{b.body}</p>
               </div>
             ))}
           </div>
