@@ -58,7 +58,7 @@ export default function Hero({ onOpenModal }) {
         {/* Right column - editorial image */}
         <div style={{ position: 'relative', overflow: 'hidden', minHeight: 600 }}>
           <img
-            src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80&auto=format&fit=crop"
+            src="/gluco.jpg"
             alt="Médico revisando estudios de imagen"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
