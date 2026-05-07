@@ -13,7 +13,7 @@ const modules = [
 ];
 
 export default function Curriculum() {
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState(0);
 
   return (
     <section id="temario" style={{ background: '#fff', padding: '96px 24px' }}>
@@ -29,7 +29,7 @@ export default function Curriculum() {
         <div style={{ borderTop: '1px solid #e5e7eb' }}>
           {modules.map((mod) => (
             <div key={mod.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
-              <button onClick={() => setOpen(open === mod.id ? null : mod.id)} style={{
+              <button onClick={() => setOpen(mod.id)} style={{
                 width: '100%', textAlign: 'left', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer',
                 display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16,
               }}>
