@@ -48,7 +48,7 @@ export default function Hero({ onOpenModal }) {
         </div>
 
         {/* Three dark chat cards - no images */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, maxWidth: 900 }}>
+        <div className="hero-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, maxWidth: 900 }}>
           {/* Card 1 - SOAP */}
           <div style={{ background: '#17171c', borderRadius: 22, padding: 20, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -120,9 +120,9 @@ export default function Hero({ onOpenModal }) {
 
       <style>{`
         @media (max-width: 768px) {
-          section > div > div[style*="grid-template-columns: 1fr 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
+          .hidden-mobile { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
+          .hero-cards-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
