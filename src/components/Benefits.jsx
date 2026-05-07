@@ -1,6 +1,6 @@
 const benefits = [
   {
-    icon: '🧠',
+    icon: '🧬',
     title: 'Tu conocimiento, no el de internet',
     body: 'El agente responde con los protocolos que tú cargas. Tus criterios de derivación, tus guías de manejo, tu especialidad — no el promedio de internet.',
   },
@@ -57,9 +57,7 @@ export default function Benefits() {
               }}
                 onMouseEnter={e => e.currentTarget.style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)'}
                 onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}>
-                <div style={{ width: 48, height: 48, borderRadius: 12, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 16, flexShrink: 0 }}>
-                  {b.icon}
-                </div>
+                <span style={{ fontSize: 24, display: 'block', marginBottom: 12 }}>{b.icon}</span>
                 <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 16, color: '#17171c', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
                   {b.title}
                 </h3>
