@@ -18,10 +18,10 @@ const plans = [
     description: 'Tu asistente IA en producción, gestionado por nosotros',
     strikethrough: '$944.000 COP',
     features: ['WhatsApp conectado a tu agente', 'Panel de supervisión Chatwoot', 'Base de usuarios Supabase', 'Soporte de infraestructura incluido', 'Pago mensual'],
-    badge: 'Inscripción abierta',
+    badge: 'Solo graduados',
     subBadge: 'Inicio: 25 de junio — Cupos limitados',
     highlighted: true,
-    tag: 'Médicos & Especialistas',
+    tag: 'Graduados AngaritaRad-AI',
   },
   {
     name: 'Angaritarad-AI Suite',
@@ -60,7 +60,7 @@ export default function Pricing({ onOpenModal }) {
               display: 'flex', flexDirection: 'column', position: 'relative',
             }}>
               {plan.badge && (
-                <span style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: '#ef4444', color: '#fff', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 32, whiteSpace: 'nowrap', fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: plan.badge === 'Solo graduados' ? '#1863dc' : '#ef4444', color: '#fff', fontSize: 11, fontWeight: 600, padding: '4px 14px', borderRadius: 32, whiteSpace: 'nowrap', fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {plan.badge}
                 </span>
               )}
@@ -91,11 +91,27 @@ export default function Pricing({ onOpenModal }) {
                 ))}
               </div>
 
-              <button onClick={onOpenModal}
-                className={plan.highlighted ? 'btn-brand' : 'btn-outline'}
-                style={{ width: '100%', justifyContent: 'center', fontSize: 14, padding: '11px 20px' }}>
-                {plan.price === 'A consultar' ? 'Solicitar información' : 'Comenzar'}
-              </button>
+              {plan.badge === 'Solo graduados' ? (
+                <>
+                  <a
+                    href="mailto:angaritarad@gmail.com?subject=Extensión agente radiología — Graduado&body=Hola Dr. Angarita, terminé el curso y quiero extender el agente de radiología."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline"
+                    style={{ width: '100%', justifyContent: 'center', fontSize: 14, padding: '11px 20px', textDecoration: 'none' }}>
+                    Acceso exclusivo graduados
+                  </a>
+                  <p style={{ fontSize: 11, color: '#93939f', textAlign: 'center', marginTop: 8 }}>
+                    Disponible al completar los 8 módulos del curso
+                  </p>
+                </>
+              ) : (
+                <button onClick={onOpenModal}
+                  className={plan.highlighted ? 'btn-brand' : 'btn-outline'}
+                  style={{ width: '100%', justifyContent: 'center', fontSize: 14, padding: '11px 20px' }}>
+                  {plan.price === 'A consultar' ? 'Solicitar información' : 'Comenzar'}
+                </button>
+              )}
             </div>
           ))}
         </div>
