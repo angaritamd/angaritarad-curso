@@ -3,13 +3,14 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import NoPitch from './components/NoPitch';
 import PracticalDemo from './components/PracticalDemo';
-import Benefits from './components/Benefits';
 import Curriculum from './components/Curriculum';
 import ResourceCards from './components/ResourceCards';
 import Instructor from './components/Instructor';
-import Pricing from './components/Pricing';
 import RegistrationModal from './components/RegistrationModal';
 import { FAQ, TargetAudience, FinalCTA, Footer } from './components/Sections';
+// Ocultos hasta nueva definición (no borrar):
+// import Pricing from './components/Pricing';
+// import Benefits from './components/Benefits';
 
 function PrivacyModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -33,17 +34,14 @@ export default function App() {
     <div style={{ minHeight:'100vh',background:'#fff' }}>
       <Header onOpenModal={open} />
       <main>
+        {/* Flow: Hero → Value Prop → Estructura del curso → demo/soporte → CTA */}
         <Hero onOpenModal={open} />
         <NoPitch />
-        <div style={{ display:'block' }}>
-          <PracticalDemo onOpenModal={open} />
-          <Curriculum />
-          <Benefits />
-          <ResourceCards onOpenModal={open} />
-          <TargetAudience />
-          <Instructor />
-        </div>
-        <Pricing onOpenModal={open} />
+        <Curriculum />
+        <PracticalDemo onOpenModal={open} />
+        <TargetAudience />
+        <ResourceCards onOpenModal={open} />
+        <Instructor />
         <FAQ />
         <FinalCTA onOpenModal={open} />
       </main>

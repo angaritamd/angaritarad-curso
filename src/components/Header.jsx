@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Beneficios', href: '#beneficios' },
-  { name: 'Temario', href: '#temario' },
+  { name: 'Estructura', href: '#temario' },
+  { name: 'En la práctica', href: '#practica' },
   { name: 'Instructor', href: '#instructor' },
-  { name: 'Precios', href: '#precios' },
 ];
 
 export default function Header({ onOpenModal }) {
@@ -30,7 +29,7 @@ export default function Header({ onOpenModal }) {
       {/* Announcement bar */}
       <div style={{ background: '#17171c', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '12px', letterSpacing: '0.05em' }}>
         <span className="mono-label" style={{ color: '#d9d9dd' }}>
-          Inscripción abierta · Inicio 25 de junio · Cupos limitados
+          Inscripción abierta · Cupos limitados
         </span>
       </div>
 

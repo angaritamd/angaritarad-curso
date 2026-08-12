@@ -7,8 +7,8 @@ const faqs = [
   { q: '¿Cómo accedo a mi agente?', a: 'Al inscribirte recibes una invitación a tu grupo privado de WhatsApp. Ese es tu canal directo con tu agente Angaritarad-AI, disponible 24/7 desde cualquier dispositivo.' },
   { q: '¿Es seguro para los datos de mis pacientes?', a: 'Sí, con una regla fundamental que enseñamos desde el Módulo 0: nunca ingreses datos identificables de pacientes. Los casos deben ser siempre anonimizados. La plataforma tiene cifrado, backups diarios y políticas de retención claras.' },
   { q: '¿El agente reemplaza mi criterio clínico?', a: 'No, y este punto es fundamental. Angaritarad-AI es tu copiloto de productividad y apoyo educativo. Cada respuesta clínica incluye automáticamente un recordatorio de que requiere tu validación profesional.' },
-  { q: '¿Qué pasa cuando termino el curso?', a: 'Conservas acceso a tu agente con los skills de todos los módulos del curso (acceso de por vida). Los skills avanzados de Radiología del Módulo Bonus tienen un plan de continuidad separado.' },
-  { q: '¿Funciona con mi especialidad?', a: 'Sí. El agente tiene skills generales para todos los médicos (dictado, triaje, agendamiento) y un módulo bonus específico para radiología. En la comunidad, médicos de distintas especialidades van construyendo y compartiendo nuevos skills.' },
+  { q: '¿Qué pasa cuando termino el curso?', a: 'Conservas acceso a tu agente con los skills de todos los módulos del curso (acceso de por vida).' },
+  { q: '¿Funciona con mi especialidad?', a: 'Sí. El agente tiene skills generales para todos los médicos (dictado, triaje, agendamiento). En la comunidad, médicos de distintas especialidades van construyendo y compartiendo nuevos skills.' },
 ];
 
 export function FAQ() {
