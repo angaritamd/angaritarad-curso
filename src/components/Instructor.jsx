@@ -1,7 +1,5 @@
 
 
-const CDN = 'https://horizons-cdn.hostinger.com/1b0a5bfe-2477-4a6f-b6d0-9e4cdbc81f2c';
-
 export default function Instructor() {
   return (
     <section id="instructor" style={{ background: '#eeece7', padding: '96px 24px' }}>
@@ -12,7 +10,7 @@ export default function Instructor() {
           <div>
             <div style={{ borderRadius: 22, overflow: 'hidden', border: '1px solid #d9d9dd', marginBottom: 20 }}>
               <img
-                src={`${CDN}/dc06355de16ced818f07b779d15c57b5.png`}
+                src="/instructor.jpg"
                 alt="Dr. Miguel Angarita"
                 style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', display: 'block' }}
               />
@@ -21,10 +19,10 @@ export default function Instructor() {
               Dr. Miguel Angarita
             </h3>
             <p style={{ fontSize: 13, color: '#616161', margin: '0 0 16px', lineHeight: 1.4 }}>
-              Radiólogo · Fundador AngaritaRad & OpenRad.ai
+              Médico · Fundador AngaritaRad-AI
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
-              {['Harvard Executive Education', 'OpenRad.ai', '+10K @angaritarad'].map(tag => (
+              {['Harvard Executive Education', '+10K @angaritarad'].map(tag => (
                 <span key={tag} style={{ fontSize: 12, color: '#616161', fontFamily: 'JetBrains Mono, monospace', background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, padding: '4px 10px', display: 'inline-block', width: 'fit-content' }}>{tag}</span>
               ))}
             </div>
@@ -39,13 +37,12 @@ export default function Instructor() {
           {/* Bio */}
           <div>
             <h2 style={{ fontFamily: 'Space Grotesk', fontWeight: 400, fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', letterSpacing: '-0.02em', color: '#17171c', margin: '0 0 28px', lineHeight: 1.2 }}>
-              La red de agentes médicos de IA para cada especialista.
+              IA aplicada a la consulta real, enseñada por un médico.
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
-                'El Dr. Miguel Angarita combina su experiencia clínica como radiólogo con un conocimiento avanzado en automatización e inteligencia artificial aplicada a la salud. Tras especializarse en IA para la salud en Harvard, enfocó su carrera en crear soluciones que realmente funcionen en el terreno de los médicos latinoamericanos.',
-                'Como creador del ecosistema Angaritarad-AI, diseñó este sistema pensando estrictamente en las necesidades del médico: eliminar tareas repetitivas, proteger la privacidad del paciente y recuperar tiempo de consulta. Entiende que un agente no es un reemplazo del médico — es un colaborador incansable.',
-                'En este programa te guiará paso a paso para que domines tu propio agente. Su enfoque práctico garantiza que cada médico logre integrar la IA a su flujo de trabajo real, no solo entenderla en teoría.',
+                'El Dr. Miguel Angarita combina su experiencia clínica con formación en IA para la salud en Harvard. Su enfoque: crear soluciones que funcionen en el terreno real de los médicos latinoamericanos — eliminar tareas repetitivas, proteger la privacidad del paciente y recuperar tiempo de consulta.',
+                'En este curso te guía paso a paso para que apliques IA en tu flujo de trabajo real, no solo la entiendas en teoría.',
               ].map((p, i) => (
                 <p key={i} style={{ fontSize: 16, lineHeight: 1.7, color: '#212121', margin: 0 }}>{p}</p>
               ))}
