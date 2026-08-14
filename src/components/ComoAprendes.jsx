@@ -50,6 +50,18 @@ export default function ComoAprendes() {
             propio proyecto de IA. Y tu agente clínico sigue contigo después del curso.
           </p>
         </div>
+
+        {/* Infografía del sistema */}
+        <div style={{ marginTop: 56, textAlign: 'center' }}>
+          <img
+            src="/sistema-ia-clinica.webp"
+            alt="Diagrama del sistema de IA clínica que construyes en el curso: asistente en WhatsApp, notas automáticas, segunda memoria, automatización y publicación."
+            style={{ width: '100%', maxWidth: 720, height: 'auto', borderRadius: 16, display: 'block', margin: '0 auto' }}
+          />
+          <p style={{ fontSize: 13, color: '#616161', marginTop: 16 }}>
+            Todas las piezas se conectan en un solo sistema — tuyo.
+          </p>
+        </div>
       </div>
       <style>{`@media (max-width: 640px) { .comoaprendes-grid { grid-template-columns: 1fr !important; } }`}</style>
     </section>
