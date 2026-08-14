@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Estructura', href: '#temario' },
-  { name: 'En la práctica', href: '#practica' },
+  { name: '¿Es para ti?', href: '#es-para-ti' },
+  { name: 'Temario', href: '#temario' },
   { name: 'Instructor', href: '#instructor' },
 ];
 
@@ -29,7 +29,7 @@ export default function Header({ onOpenModal }) {
       {/* Announcement bar */}
       <div style={{ background: '#17171c', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '12px', letterSpacing: '0.05em' }}>
         <span className="mono-label" style={{ color: '#d9d9dd' }}>
-          Inscripción abierta · Cupos limitados
+          Inscripción abierta · Para médicos generales
         </span>
       </div>
 
@@ -65,7 +65,7 @@ export default function Header({ onOpenModal }) {
 
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <button onClick={onOpenModal} className="btn-brand" style={{ padding: '8px 18px', fontSize: 13 }}>
-              Inscribirme
+              Quiero el curso
             </button>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="mobile-menu-btn"
               style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
@@ -85,7 +85,7 @@ export default function Header({ onOpenModal }) {
             ))}
             <button onClick={() => { setMobileOpen(false); onOpenModal(); }} className="btn-brand"
               style={{ marginTop: 16, width: '100%', padding: '12px 24px', fontSize: 15 }}>
-              Inscribirme al Programa
+              Quiero el curso
             </button>
           </div>
         )}

@@ -2,13 +2,10 @@ import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
-  { q: '¿Qué es Angaritarad-AI?', a: 'Angaritarad-AI es tu agente de IA médica personal. Vive en un grupo privado de WhatsApp y te ayuda a dictar historias clínicas, hacer triaje, agendar pacientes y evaluar riesgo clínico. Lo usas desde el primer día del curso y lo conservas al terminar.' },
-  { q: '¿Necesito saber programar o manejar servidores?', a: 'Para nada. Nosotros gestionamos toda la infraestructura. Tú solo necesitas WhatsApp y ganas de aprender. Sin instalaciones, sin comandos, sin complicaciones técnicas.' },
-  { q: '¿Cómo accedo a mi agente?', a: 'Al inscribirte recibes una invitación a tu grupo privado de WhatsApp. Ese es tu canal directo con tu agente Angaritarad-AI, disponible 24/7 desde cualquier dispositivo.' },
-  { q: '¿Es seguro para los datos de mis pacientes?', a: 'Sí, con una regla fundamental que enseñamos desde el Módulo 0: nunca ingreses datos identificables de pacientes. Los casos deben ser siempre anonimizados. La plataforma tiene cifrado, backups diarios y políticas de retención claras.' },
-  { q: '¿El agente reemplaza mi criterio clínico?', a: 'No, y este punto es fundamental. Angaritarad-AI es tu copiloto de productividad y apoyo educativo. Cada respuesta clínica incluye automáticamente un recordatorio de que requiere tu validación profesional.' },
-  { q: '¿Qué pasa cuando termino el curso?', a: 'Conservas acceso a tu agente con los skills de todos los módulos del curso (acceso de por vida).' },
-  { q: '¿Funciona con mi especialidad?', a: 'Sí. El agente tiene skills generales para todos los médicos (dictado, triaje, agendamiento). En la comunidad, médicos de distintas especialidades van construyendo y compartiendo nuevos skills.' },
+  { q: '¿Necesito saber de IA?', a: 'No. Empiezas desde cero; los fundamentos bonus te ponen al día.' },
+  { q: '¿Tengo que programar?', a: 'Nunca. Los talleres y el agente hacen el trabajo técnico; tú aportas el criterio clínico.' },
+  { q: '¿Cuánto tiempo dedico?', a: '2 a 3 horas por semana. Los módulos son cortos y prácticos.' },
+  { q: '¿Qué me llevo al terminar?', a: 'Un asistente clínico activo, un portfolio real y acceso a la comunidad.' },
 ];
 
 export function FAQ() {
@@ -83,13 +80,13 @@ export function FinalCTA({ onOpenModal }) {
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
         <span className="mono-label" style={{ color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 24 }}>Comienza hoy mismo</span>
         <h2 style={{ fontFamily: 'Space Grotesk', fontWeight: 400, fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.03em', color: '#fff', margin: '0 0 20px', lineHeight: 1.05 }}>
-          Tu agente te espera.
+          Empieza a usar IA en tu consulta.
         </h2>
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
-          Al activarlo, tienes un asistente médico entrenado con tu conocimiento — activo 24/7, accesible por WhatsApp, supervisado por ti.
+          Un curso práctico para médicos generales.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, maxWidth: 480, margin: '0 auto 40px', textAlign: 'left' }} className="checkmarks-grid">
-          {['Agente configurado para tu especialidad', 'WhatsApp conectado desde el Módulo 0', 'Panel de supervisión en tiempo real', 'Sin código, sin servidores, sin complicaciones'].map((item, i) => (
+          {['Desde cero', 'Sin código', 'Talleres prácticos', 'Comunidad de médicos'].map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
               <span style={{ color: '#22c55e', fontSize: 14, flexShrink: 0 }}>✓</span>
               <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', lineHeight: 1.4 }}>{item}</span>
@@ -99,7 +96,7 @@ export function FinalCTA({ onOpenModal }) {
         <button onClick={onOpenModal} style={{ background: '#ef4444', color: '#fff', padding: '16px 36px', borderRadius: 32, border: 'none', cursor: 'pointer', fontSize: 16, fontFamily: 'Space Grotesk', fontWeight: 500, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(239,68,68,0.3)', transition: 'background 0.2s' }}
           onMouseEnter={e => e.target.style.background = '#b91c1c'}
           onMouseLeave={e => e.target.style.background = '#ef4444'}>
-          Inscribirme al Programa
+          Quiero el curso
         </button>
       </div>
       <style>{`@media (max-width: 480px) { .checkmarks-grid { grid-template-columns: 1fr !important; } }`}</style>
@@ -120,7 +117,7 @@ export function Footer({ onOpenPrivacy }) {
               <span style={{ fontFamily: 'Space Grotesk', fontWeight: 600, fontSize: 14, color: '#fff', letterSpacing: '-0.01em' }}>AngaritaRad-AI</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', maxWidth: 320, lineHeight: 1.6, margin: 0 }}>
-              Agentes de IA médica para profesionales de la salud latinoamericanos. OpenRad.ai
+              IA aplicada a la práctica médica, para médicos latinoamericanos.
             </p>
           </div>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>

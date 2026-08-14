@@ -97,7 +97,7 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
               {[
                 { key: 'nombre', label: 'Nombre completo', type: 'text', placeholder: 'Dr. Juan García', required: true },
                 { key: 'email', label: 'Correo electrónico', type: 'email', placeholder: 'juan@clinica.com', required: true },
-                { key: 'especialidad', label: 'Especialidad', type: 'text', placeholder: 'Medicina General, Cardiología, Radiología…', required: false },
+                { key: 'especialidad', label: 'Especialidad', type: 'text', placeholder: 'Medicina General, Medicina Familiar…', required: false },
                 { key: 'whatsapp', label: 'WhatsApp (con código de país)', type: 'tel', placeholder: '+57 300 000 0000', required: true },
               ].map(field => (
                 <div key={field.key}>

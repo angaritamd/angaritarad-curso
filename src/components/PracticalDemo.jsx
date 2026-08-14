@@ -21,9 +21,9 @@ const examples = [
   },
   {
     id: 4,
-    label: 'Reporte estructurado',
-    user: 'Nódulo pulmonar sólido 8mm LSD, bordes espiculados, sin adenopatías',
-    agent: 'Reporte estructurado:\nHallazgo: Nódulo sólido LSD\nTamaño: 8mm\nMorfología: Espiculado — alta sospecha\nLung-RADS: 4B\nRecomendación: PET-CT o biopsia\nSeguimiento: 3 meses',
+    label: 'Remisión en segundos',
+    user: 'Remisión a medicina interna: paciente con HTA no controlada pese a manejo dual',
+    agent: 'Remisión lista:\nMotivo: HTA no controlada\nManejo actual: terapia dual\nSolicitud: valoración y ajuste por medicina interna\nAdjuntos sugeridos: últimas cifras de TA y paraclínicos\n\nRevisa, ajusta y firma — tú tienes la última palabra.',
   },
 ];
 
@@ -39,13 +39,13 @@ const cards = [
     ],
   },
   {
-    label: 'Consulta clínica en segundos',
-    user: 'Dame un tip médico para hoy',
+    label: 'Documentación sin fricción',
+    user: '¿Cómo documento más rápido mi consulta de hoy?',
     lines: [
-      { tag: 'Tip (Radiología):', text: null },
-      { tag: '·', text: 'En TC no veas "masa sólida en riñón", busca realce verdadero' },
-      { tag: '·', text: 'Realce significativo si aumenta >20 UH entre pre y poscontraste' },
-      { tag: '·', text: 'En RM: realce en difusión ayuda si hay hemorragia peritumoral' },
+      { tag: 'Flujo:', text: null },
+      { tag: '·', text: 'Dicta la nota al terminar cada consulta' },
+      { tag: '·', text: 'El agente la estructura en formato SOAP' },
+      { tag: '·', text: 'Revisas, ajustas y firmas — tú decides' },
     ],
   },
   {
@@ -66,13 +66,13 @@ function ChatCard({ card }) {
       <div style={{ background: '#17171c', borderRadius: 16, padding: 24, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 16, height: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI</span>
         </div>
         <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 8, padding: '10px 14px' }}>
           <span style={{ fontSize: 13, color: '#93939f' }}>{card.user}</span>
         </div>
         <div style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 8, padding: '12px 14px' }}>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#ef4444', display: 'block', marginBottom: 8 }}>RESPUESTA</span>
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#ef4444', display: 'block', marginBottom: 8 }}>RESPUESTA</span>
           {card.response.map((line, i) => (
             <div key={i} style={{ fontSize: 14, color: '#fff', lineHeight: 1.6 }}>{line}</div>
           ))}
@@ -85,7 +85,7 @@ function ChatCard({ card }) {
     <div style={{ background: '#17171c', borderRadius: 16, padding: 24, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e' }} />
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI · WHATSAPP</span>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#93939f' }}>ANGARITARAD-AI · WHATSAPP</span>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 14 }}>
         <div style={{ background: 'rgba(255,255,255,0.1)', color: '#e5e7eb', borderRadius: '12px 12px 4px 12px', padding: '9px 13px', maxWidth: '80%', fontSize: 13, lineHeight: 1.5 }}>
@@ -95,13 +95,13 @@ function ChatCard({ card }) {
       <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '12px 12px 12px 4px', padding: '12px 14px', flex: 1 }}>
         {card.lines.map((line, i) => (
           <div key={i} style={{ display: 'flex', gap: 6, marginBottom: i < card.lines.length - 1 ? 6 : 0 }}>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#ef4444', flexShrink: 0 }}>{line.tag}</span>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#ef4444', flexShrink: 0 }}>{line.tag}</span>
             {line.text && <span style={{ fontSize: 13, color: '#d1d5db', lineHeight: 1.5 }}>{line.text}</span>}
           </div>
         ))}
       </div>
       <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#4b5563' }}>{card.label}</span>
+        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#4b5563' }}>{card.label}</span>
       </div>
     </div>
   );

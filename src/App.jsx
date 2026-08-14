@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import EsParaTi from './components/EsParaTi';
 import NoPitch from './components/NoPitch';
+import ComoAprendes from './components/ComoAprendes';
 import PracticalDemo from './components/PracticalDemo';
 import Curriculum from './components/Curriculum';
-import ResourceCards from './components/ResourceCards';
 import Instructor from './components/Instructor';
+import PrecioInteres from './components/PrecioInteres';
 import RegistrationModal from './components/RegistrationModal';
-import { FAQ, TargetAudience, FinalCTA, Footer } from './components/Sections';
+import { FAQ, FinalCTA, Footer } from './components/Sections';
 // Ocultos hasta nueva definición (no borrar):
 // import Pricing from './components/Pricing';
 // import Benefits from './components/Benefits';
+// import ResourceCards from './components/ResourceCards';
+// TargetAudience (Sections.jsx) reemplazada por EsParaTi.
 
 function PrivacyModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -34,15 +38,16 @@ export default function App() {
     <div style={{ minHeight:'100vh',background:'#fff' }}>
       <Header onOpenModal={open} />
       <main>
-        {/* Flow: Hero → Value Prop → Estructura del curso → demo/soporte → CTA */}
+        {/* Flow: Hero → EsParaTi → QueLograr → ComoAprendes → Temario → Demo → Instructor → FAQ → Precio → CTA */}
         <Hero onOpenModal={open} />
+        <EsParaTi />
         <NoPitch />
+        <ComoAprendes />
         <Curriculum />
         <PracticalDemo onOpenModal={open} />
-        <TargetAudience />
-        <ResourceCards onOpenModal={open} />
         <Instructor />
         <FAQ />
+        <PrecioInteres onOpenModal={open} />
         <FinalCTA onOpenModal={open} />
       </main>
       <Footer onOpenPrivacy={() => setPrivacyOpen(true)} />
