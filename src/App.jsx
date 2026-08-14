@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import EsParaTi from './components/EsParaTi';
 import NoPitch from './components/NoPitch';
+import VideoCurso from './components/VideoCurso';
 import ComoAprendes from './components/ComoAprendes';
 import PracticalDemo from './components/PracticalDemo';
 import Curriculum from './components/Curriculum';
@@ -42,6 +43,7 @@ export default function App() {
         <Hero onOpenModal={open} />
         <EsParaTi />
         <NoPitch />
+        <VideoCurso />
         <ComoAprendes />
         <Curriculum />
         <PracticalDemo onOpenModal={open} />

@@ -10,7 +10,7 @@ export default function Hero({ onOpenModal }) {
 
           {/* Label */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 32 }}>
-            <span className="mono-label">Curso para médicos generales</span>
+            <span className="mono-label">Curso para médicos y especialistas</span>
             <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#ef4444', display: 'inline-block' }} />
             <span className="mono-label" style={{ color: '#ef4444' }}>Inscripción abierta</span>
           </div>
@@ -24,13 +24,13 @@ export default function Hero({ onOpenModal }) {
               color: '#17171c', margin: 0,
             }}>
               Aprende a usar IA<br />
-              <span style={{ color: '#ef4444' }}>en tu consulta.</span>
+              <span style={{ color: '#ef4444' }}>en tu práctica.</span>
             </h1>
           </div>
 
           {/* Subhead */}
           <p style={{ fontSize: 18, lineHeight: 1.6, color: '#616161', maxWidth: 560, marginBottom: 40 }}>
-            Un curso práctico para médicos generales. Documenta, razona, automatiza y publica con inteligencia artificial — sin código y sin saber nada de IA.
+            Un curso práctico para médicos y especialistas. Documenta, razona, automatiza y publica con inteligencia artificial — sin código y sin saber nada de IA.
           </p>
 
           {/* CTAs */}
@@ -47,9 +47,9 @@ export default function Hero({ onOpenModal }) {
           {/* Trust strip */}
           <div style={{ paddingTop: 32, borderTop: '1px solid #f2f2f2', display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap' }}>
             <span className="mono-label">Instructor certificado</span>
-            <span style={{ color: '#212121', fontFamily: 'Space Grotesk', fontSize: 14, fontWeight: 500 }}>Harvard Executive Education</span>
+            <span style={{ color: '#212121', fontFamily: 'Space Grotesk', fontSize: 14, fontWeight: 500 }}>Harvard Exec. Ed.</span>
             <span style={{ color: '#d9d9dd' }}>·</span>
-            <span style={{ color: '#212121', fontFamily: 'Space Grotesk', fontSize: 14, fontWeight: 500 }}>+10K seguidores @angaritarad</span>
+            <span style={{ color: '#212121', fontFamily: 'Space Grotesk', fontSize: 14, fontWeight: 500 }}>@angaritarad</span>
           </div>
         </div>
 

@@ -83,7 +83,7 @@ export function FinalCTA({ onOpenModal }) {
           Empieza a usar IA en tu consulta.
         </h2>
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
-          Un curso práctico para médicos generales.
+          Un curso práctico para médicos y especialistas.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, maxWidth: 480, margin: '0 auto 40px', textAlign: 'left' }} className="checkmarks-grid">
           {['Desde cero', 'Sin código', 'Talleres prácticos', 'Comunidad de médicos'].map((item, i) => (

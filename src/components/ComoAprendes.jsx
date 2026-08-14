@@ -37,6 +37,19 @@ export default function ComoAprendes() {
             </div>
           ))}
         </div>
+
+        {/* Hilo conductor */}
+        <div style={{ background: '#fff', border: '1px solid #f2f2f2', borderRadius: 12, padding: '36px 32px', marginTop: 16, textAlign: 'center' }}>
+          <h3 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 18, color: '#17171c', margin: '0 0 10px', letterSpacing: '-0.01em' }}>
+            Un hilo conductor de principio a fin
+          </h3>
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: '#616161', margin: '0 auto', maxWidth: 620 }}>
+            Cada taller construye una pieza de un proyecto real, como si estuvieras
+            implementando IA en tu propio consultorio u hospital. Al terminar no solo
+            sabes usar herramientas: quedas entrenado para crear e implementar tu
+            propio proyecto de IA. Y tu agente clínico sigue contigo después del curso.
+          </p>
+        </div>
       </div>
       <style>{`@media (max-width: 640px) { .comoaprendes-grid { grid-template-columns: 1fr !important; } }`}</style>
     </section>

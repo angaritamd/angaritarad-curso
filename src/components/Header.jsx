@@ -29,7 +29,7 @@ export default function Header({ onOpenModal }) {
       {/* Announcement bar */}
       <div style={{ background: '#17171c', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '12px', letterSpacing: '0.05em' }}>
         <span className="mono-label" style={{ color: '#d9d9dd' }}>
-          Inscripción abierta · Para médicos generales
+          Inscripción abierta · Para médicos y especialistas
         </span>
       </div>
 

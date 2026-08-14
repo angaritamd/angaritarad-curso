@@ -29,7 +29,7 @@ const examples = [
 
 const cards = [
   {
-    label: 'Dictado → SOAP automático',
+    label: 'Dictado → historia clínica',
     user: 'Mujer 58a dolor abdominal agudo, fiebre y náuseas. Sospecha de apendicitis. ¿Puedes analizar el caso?',
     lines: [
       { tag: 'S:', text: 'Mujer 58a, dolor abdominal agudo, fiebre y náuseas' },
@@ -44,7 +44,7 @@ const cards = [
     lines: [
       { tag: 'Flujo:', text: null },
       { tag: '·', text: 'Dicta la nota al terminar cada consulta' },
-      { tag: '·', text: 'El agente la estructura en formato SOAP' },
+      { tag: '·', text: 'El agente la estructura como nota clínica' },
       { tag: '·', text: 'Revisas, ajustas y firmas — tú decides' },
     ],
   },

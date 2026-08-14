@@ -1,5 +1,5 @@
 const results = [
-  'Documenta notas SOAP, remisiones y certificados en segundos',
+  'Documenta notas de historia clínica, remisiones y certificados en segundos',
   'Ten un asistente clínico que responde con tu criterio',
   'Automatiza tareas repetitivas sin escribir una línea de código',
   'Construye tu memoria clínica y publica tu conocimiento',

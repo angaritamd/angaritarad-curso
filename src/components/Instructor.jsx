@@ -22,7 +22,7 @@ export default function Instructor() {
               Médico · Fundador AngaritaRad-AI
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
-              {['Harvard Executive Education', '+10K @angaritarad'].map(tag => (
+              {['Harvard Executive Education', '@angaritarad'].map(tag => (
                 <span key={tag} style={{ fontSize: 12, color: '#616161', fontFamily: 'JetBrains Mono, monospace', background: '#fff', border: '1px solid #e5e7eb', borderRadius: 6, padding: '4px 10px', display: 'inline-block', width: 'fit-content' }}>{tag}</span>
               ))}
             </div>

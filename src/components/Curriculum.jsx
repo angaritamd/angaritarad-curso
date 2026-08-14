@@ -10,7 +10,7 @@ const fundamentals = [
 
 const modules = [
   { id: 'M1', title: 'Activa tu asistente en WhatsApp', description: 'Tu agente respondiendo en tu número antes de terminar el módulo.' },
-  { id: 'M2', title: 'Documentación + razonamiento aumentado', description: 'SOAP, remisiones y certificados en segundos. La IA propone, tú decides.' },
+  { id: 'M2', title: 'Documentación + razonamiento aumentado', description: 'Notas de historia clínica, remisiones y certificados en segundos. La IA propone, tú decides.' },
   { id: 'M3', title: 'Tu ruta: Clinical Coder vs Hospital Coder', description: '¿Construyes a tu escala o a escala institucional? Los 4 pilares del Hospital Coder.' },
   { id: 'M4', title: 'Automatización clínica con n8n', description: 'Tu primer flujo automático, sin programar. Qué automatizar, qué nunca.' },
   { id: 'M5', title: 'Tu segunda memoria clínica (RAG)', description: 'El agente busca en tus propias fuentes antes de responder. Sin código.' },

@@ -4,12 +4,12 @@ const items = [
   {
     Icon: User,
     title: 'Para quién',
-    body: 'Médicos generales que atienden pacientes y quieren usar IA con criterio clínico.',
+    body: 'Médicos y especialistas que trabajan en consultorio o en hospitales y quieren usar IA con criterio clínico.',
   },
   {
     Icon: CheckCircle,
     title: 'Requisitos',
-    body: 'Un teléfono con WhatsApp y ganas de aplicar lo que aprendes. Nada más.',
+    body: 'WhatsApp y otras plataformas gratuitas y fáciles de instalar. Nada más.',
   },
   {
     Icon: Star,
