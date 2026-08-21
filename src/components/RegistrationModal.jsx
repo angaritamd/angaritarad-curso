@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
+import { AURORA_MINT, BRAND, HAIRLINE } from '../theme';
 
 export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
   const [form, setForm] = useState({ nombre: '', email: '', especialidad: '', whatsapp: '' });
@@ -69,16 +70,16 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
 
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 20, maxWidth: 480, width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: 'var(--canvas-card)', borderRadius: 20, maxWidth: 480, width: '100%', maxHeight: '90vh', overflowY: 'auto', position: 'relative' }}>
         {/* Header */}
         <div style={{ padding: '24px 28px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Inscripción</span>
-            <h2 style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 22, color: '#17171c', margin: 0, letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 22, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
               Activa tu agente médico
             </h2>
           </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: '#93939f' }}>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--muted)' }}>
             <X size={20} />
           </button>
         </div>
@@ -86,9 +87,9 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
         <div style={{ padding: '20px 28px 28px' }}>
           {success ? (
             <div style={{ textAlign: 'center', padding: '24px 0' }}>
-              <CheckCircle2 size={48} color="#22c55e" style={{ margin: '0 auto 16px' }} />
-              <h3 style={{ fontFamily: 'Space Grotesk', fontSize: 20, color: '#17171c', margin: '0 0 8px' }}>¡Registro exitoso!</h3>
-              <p style={{ fontSize: 14, color: '#616161', lineHeight: 1.6 }}>
+              <CheckCircle2 size={48} color={AURORA_MINT} style={{ margin: '0 auto 16px' }} />
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Registro exitoso!</h3>
+              <p style={{ fontSize: 14, color: 'var(--body)', lineHeight: 1.6 }}>
                 Redirigiendo al grupo en {countdown}…
               </p>
             </div>
@@ -101,25 +102,25 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
                 { key: 'whatsapp', label: 'WhatsApp (con código de país)', type: 'tel', placeholder: '+57 300 000 0000', required: true },
               ].map(field => (
                 <div key={field.key}>
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: '#212121', marginBottom: 6 }}>{field.label}{field.required && <span style={{ color: '#ef4444' }}> *</span>}</label>
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--ink)', marginBottom: 6 }}>{field.label}{field.required && <span style={{ color: 'var(--primary)' }}> *</span>}</label>
                   <input type={field.type} placeholder={field.placeholder} required={field.required} value={form[field.key]}
                     onChange={e => setForm({ ...form, [field.key]: e.target.value })}
-                    style={{ width: '100%', padding: '10px 14px', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: 14, color: '#212121', outline: 'none', fontFamily: 'Inter, sans-serif', boxSizing: 'border-box', transition: 'border-color 0.15s' }}
-                    onFocus={e => e.target.style.borderColor = '#9b60aa'}
-                    onBlur={e => e.target.style.borderColor = '#e5e7eb'}
+                    style={{ width: '100%', padding: '10px 14px', background: 'var(--canvas-soft)', border: '1px solid var(--hairline)', borderRadius: 8, fontSize: 14, color: 'var(--ink)', outline: 'none', fontFamily: 'var(--font-sans)', boxSizing: 'border-box', transition: 'border-color 0.15s' }}
+                    onFocus={e => e.target.style.borderColor = BRAND}
+                    onBlur={e => e.target.style.borderColor = HAIRLINE}
                   />
                 </div>
               ))}
 
-              {error && <p style={{ color: '#b30000', fontSize: 13 }}>{error}</p>}
+              {error && <p style={{ color: 'var(--error)', fontSize: 13 }}>{error}</p>}
 
               <button type="submit" disabled={loading} className="btn-brand" style={{ width: '100%', justifyContent: 'center', padding: '13px 24px', fontSize: 15, opacity: loading ? 0.7 : 1 }}>
                 {loading ? 'Procesando…' : 'Confirmar inscripción'}
               </button>
 
-              <p style={{ fontSize: 11, color: '#93939f', textAlign: 'center', margin: 0 }}>
+              <p style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
                 Al inscribirte aceptas nuestra{' '}
-                <button type="button" onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1863dc', fontSize: 11, textDecoration: 'underline', padding: 0 }}>
+                <button type="button" onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--aurora-blue)', fontSize: 11, textDecoration: 'underline', padding: 0 }}>
                   política de privacidad
                 </button>.
               </p>

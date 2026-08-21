@@ -23,13 +23,13 @@ export default function Curriculum() {
   const toggle = (id) => setOpen(open === id ? null : id);
 
   return (
-    <section id="temario" style={{ background: '#fff', padding: '96px 24px' }}>
+    <section id="temario" style={{ background: 'var(--canvas)', padding: '96px 24px' }}>
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>El temario</span>
-        <h2 style={{ fontFamily: 'Space Grotesk', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: '#17171c', margin: '0 0 8px' }}>
+        <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 8px' }}>
           7 módulos + fundamentos
         </h2>
-        <p style={{ fontSize: 17, color: '#616161', marginBottom: 40, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 17, color: 'var(--body)', marginBottom: 40, lineHeight: 1.6 }}>
           Empiezas desde cero con los fundamentos bonus y avanzas módulo a módulo
           construyendo algo real en cada uno.
         </p>
@@ -37,49 +37,49 @@ export default function Curriculum() {
         {/* Fundamentos */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '0 0 8px' }}>
           <span className="mono-label">Fundamentos</span>
-          <span style={{ background: '#ef4444', color: '#fff', borderRadius: 6, padding: '2px 8px', fontSize: 11, fontFamily: 'JetBrains Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span style={{ background: 'var(--primary)', color: 'var(--ink)', borderRadius: 6, padding: '2px 8px', fontSize: 11, fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Bonus · desde cero
           </span>
         </div>
-        <div style={{ borderTop: '1px solid #e5e7eb', marginBottom: 40 }}>
-          {fundamentals.map((f) => (
-            <div key={f.id} style={{ borderBottom: '1px solid #e5e7eb', padding: '14px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span style={{ background: '#eeece7', color: '#17171c', borderRadius: 6, padding: '2px 8px', fontSize: 11, fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.05em', flexShrink: 0 }}>{f.id}</span>
-              <span style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 15, color: '#17171c', letterSpacing: '-0.01em' }}>{f.title}</span>
+        <div className="card" style={{ marginBottom: 40, padding: '4px 20px' }}>
+          {fundamentals.map((f, i) => (
+            <div key={f.id} style={{ borderTop: i ? '1px solid var(--hairline)' : 'none', padding: '14px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ background: 'var(--canvas-soft)', color: 'var(--ink)', borderRadius: 6, padding: '2px 8px', fontSize: 11, fontFamily: 'var(--font-mono)', letterSpacing: '0.05em', flexShrink: 0 }}>{f.id}</span>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15, color: 'var(--ink)', letterSpacing: '-0.01em' }}>{f.title}</span>
             </div>
           ))}
         </div>
 
         {/* Módulos */}
         <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Módulos</span>
-        <div style={{ borderTop: '1px solid #e5e7eb' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {modules.map((mod) => (
-            <div key={mod.id} style={{ borderBottom: '1px solid #e5e7eb' }}>
+            <div key={mod.id} className="card">
               <button onClick={() => toggle(mod.id)} style={{
-                width: '100%', textAlign: 'left', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer',
+                width: '100%', textAlign: 'left', padding: '20px 24px', background: 'none', border: 'none', cursor: 'pointer',
                 display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16,
               }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, flex: 1 }}>
                   <span style={{
-                    background: mod.badge ? '#ef4444' : '#17171c',
-                    color: '#fff', borderRadius: 6, padding: '2px 8px', fontSize: 11,
-                    fontFamily: 'JetBrains Mono, monospace', flexShrink: 0, marginTop: 2,
+                    background: mod.badge ? 'var(--primary)' : 'var(--canvas-card)',
+                    color: 'var(--ink)', borderRadius: 6, padding: '2px 8px', fontSize: 11,
+                    fontFamily: 'var(--font-mono)', flexShrink: 0, marginTop: 2,
                     textTransform: 'uppercase', letterSpacing: '0.05em',
                   }}>
                     {mod.badge || mod.id}
                   </span>
-                  <span style={{ fontFamily: 'Space Grotesk', fontWeight: 500, fontSize: 15, color: '#17171c', letterSpacing: '-0.01em' }}>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15, color: 'var(--ink)', letterSpacing: '-0.01em' }}>
                     {mod.title}
                   </span>
                 </div>
-                <div style={{ flexShrink: 0, color: '#93939f', marginTop: 2 }}>
+                <div style={{ flexShrink: 0, color: 'var(--muted)', marginTop: 2 }}>
                   {open === mod.id ? <Minus size={16} /> : <Plus size={16} />}
                 </div>
               </button>
 
               {open === mod.id && (
-                <div style={{ paddingBottom: 24, paddingLeft: 56 }}>
-                  <p style={{ fontSize: 14, lineHeight: 1.7, color: '#616161', margin: 0 }}>{mod.description}</p>
+                <div style={{ padding: '0 24px 24px 80px' }}>
+                  <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--body)', margin: 0 }}>{mod.description}</p>
                 </div>
               )}
             </div>

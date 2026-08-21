@@ -1,100 +1,70 @@
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { BODY, CANVAS } from '../theme';
 
-const navLinks = [
-  { name: '¿Es para ti?', href: '#es-para-ti' },
-  { name: 'Temario', href: '#temario' },
-  { name: 'Instructor', href: '#instructor' },
-];
+// Fondo unificado con angaritarad.com (#16150f). La navegación primaria vive
+// en el Sidebar, así que el header se mantiene mínimo: logo + CTA.
+const BG = CANVAS;
+const TEXT = BODY;
 
-export default function Header({ onOpenModal }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', fn);
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
-
-  const handleNav = (e, href) => {
-    e.preventDefault();
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
+export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) {
   return (
     <>
-      {/* Announcement bar */}
-      <div style={{ background: '#17171c', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '12px', letterSpacing: '0.05em' }}>
-        <span className="mono-label" style={{ color: '#d9d9dd' }}>
+      {/* Announcement bar — mismo fondo institucional */}
+      <div style={{ background: BG, textAlign: 'center', padding: '8px 16px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <span className="mono-label" style={{ color: TEXT }}>
           Inscripción abierta · Para médicos y especialistas
         </span>
       </div>
 
-      <header style={{
-        position: 'sticky', top: 0, zIndex: 100,
-        background: scrolled ? 'rgba(255,255,255,0.95)' : '#fff',
-        backdropFilter: scrolled ? 'blur(8px)' : 'none',
-        borderBottom: '1px solid #f2f2f2',
-        transition: 'all 0.2s',
-      }}>
-        <div style={{ maxWidth: 1120, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
-          {/* Logo */}
-          <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#ef4444', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ color: '#fff', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: 14 }}>A</span>
-            </div>
-            <span style={{ fontFamily: 'Space Grotesk', fontWeight: 600, fontSize: 15, color: '#17171c', letterSpacing: '-0.02em' }}>
-              AngaritaRad<span style={{ color: '#ef4444' }}>-AI</span>
-            </span>
-          </a>
+      <header style={{ position: 'sticky', top: 0, zIndex: 120, background: BG, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, gap: 16 }}>
 
-          {/* Desktop nav */}
-          <nav style={{ display: 'flex', gap: 32, alignItems: 'center' }} className="hidden-mobile">
-            {navLinks.map(link => (
-              <a key={link.name} href={link.href} onClick={(e) => handleNav(e, link.href)}
-                style={{ textDecoration: 'none', color: '#616161', fontSize: 14, transition: 'color 0.15s' }}
-                onMouseEnter={e => e.target.style.color = '#17171c'}
-                onMouseLeave={e => e.target.style.color = '#616161'}>
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <button onClick={onOpenModal} className="btn-brand" style={{ padding: '8px 18px', fontSize: 13 }}>
-              Quiero el curso
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* Hamburguesa (solo móvil) — abre el drawer del sidebar */}
+            <button
+              onClick={onToggleMenu}
+              className="rail-toggle"
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={menuOpen}
+              style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 6, color: TEXT, lineHeight: 0 }}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="mobile-menu-btn"
-              style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+
+            {/* Logo */}
+            <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <span style={{ color: 'var(--ink)', fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 14 }}>A</span>
+              </div>
+              <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 15, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+                AngaritaRad-AI
+              </span>
+            </Link>
+          </div>
+
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
+            <a
+              href="https://angaritarad.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header-link"
+              style={{ textDecoration: 'none', color: TEXT, fontSize: 14 }}
+            >
+              angaritarad.com
+            </a>
+            <button onClick={onOpenModal} className="btn-brand" style={{ padding: '9px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
+              Solicitar acceso
             </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {mobileOpen && (
-          <div style={{ background: '#fff', borderTop: '1px solid #f2f2f2', padding: '16px 24px 24px' }}>
-            {navLinks.map(link => (
-              <a key={link.name} href={link.href} onClick={(e) => handleNav(e, link.href)}
-                style={{ display: 'block', padding: '12px 0', color: '#212121', textDecoration: 'none', fontSize: 15, borderBottom: '1px solid #f2f2f2' }}>
-                {link.name}
-              </a>
-            ))}
-            <button onClick={() => { setMobileOpen(false); onOpenModal(); }} className="btn-brand"
-              style={{ marginTop: 16, width: '100%', padding: '12px 24px', fontSize: 15 }}>
-              Quiero el curso
-            </button>
-          </div>
-        )}
       </header>
 
       <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .mobile-menu-btn { display: block !important; }
+        .header-link:hover { color: var(--ink); }
+        @media (max-width: 900px) {
+          .rail-toggle { display: block !important; }
+          .header-link { display: none !important; }
         }
       `}</style>
     </>

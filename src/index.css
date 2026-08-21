@@ -2,19 +2,238 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════
+   TOKENS — espejo del sistema de angaritarad.com (index.html :root).
+   Cualquier color nuevo se declara aquí, nunca inline en un componente.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* — Superficies — */
+  --canvas:          #16150f;   /* fondo base, negro cálido */
+  --canvas-mid:      #26251e;   /* secciones alternas */
+  --canvas-card:     #2f2e26;   /* cards, un escalón por encima */
+  --canvas-soft:     #1e1d17;   /* rail, drawer, insets */
+
+  /* — Texto — */
+  --ink:             #f7f7f4;   /* titulares */
+  --body:            #b8b5ae;   /* cuerpo */
+  --body-strong:     #f7f7f4;
+  --muted:           #807d72;   /* labels, metadatos */
+  --muted-soft:      #5a5852;
+
+  /* — Hairlines — */
+  --hairline:        #3a3830;
+  --hairline-soft:   #2f2e26;
+  --hairline-strong: #4a4840;
+
+  /* — Marca — */
+  --primary:         #f54e00;   /* naranja AngaritaRad — no cambia */
+  --primary-active:  #d04200;
+  --on-primary:      #ffffff;
+
+  /* — Aurora (glow ambiental y acentos por categoría) — */
+  --aurora-peach:    #dfa88f;
+  --aurora-mint:     #9fc9a2;
+  --aurora-blue:     #9fbbe0;
+  --aurora-lavender: #c0a8dd;
+  --aurora-gold:     #c08532;
+
+  /* — Semánticos — */
+  --success:         #1f8a65;
+  --error:           #cf2d56;
+
+  /* — Tipografía — */
+  --font-sans: 'Inter', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* — Radios — */
+  --r-sm:   6px;
+  --r-md:   8px;
+  --r-lg:   12px;
+  --r-xl:   16px;
+  --r-pill: 9999px;
+
+  --nav-h: 64px;
+}
+
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-  body { margin: 0; background: #ffffff; color: #212121; font-family: Inter, Arial, ui-sans-serif, system-ui; }
-  h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', Inter, ui-sans-serif, system-ui; font-weight: 400; letter-spacing: -0.02em; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--body);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  /* Display en weight 400 y tracking negativo, como el sitio principal. */
+  h1,h2,h3,h4,h5,h6 {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
 }
 
 @layer components {
-  .btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; background:#17171c; color:#fff; font-size:14px; font-weight:500; border-radius:32px; border:none; cursor:pointer; transition:background 0.2s; text-decoration:none; }
-  .btn-primary:hover { background:#212121; }
-  .btn-brand { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; background:#ef4444; color:#fff; font-size:14px; font-weight:500; border-radius:32px; border:none; cursor:pointer; transition:background 0.2s; box-shadow:0 4px 14px rgba(239,68,68,0.25); text-decoration:none; }
-  .btn-brand:hover { background:#b91c1c; }
-  .btn-outline { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 24px; background:transparent; color:#17171c; font-size:14px; font-weight:500; border-radius:32px; border:1px solid #d9d9dd; cursor:pointer; transition:border-color 0.2s; text-decoration:none; }
-  .btn-outline:hover { border-color:#212121; }
-  .mono-label { font-family:'JetBrains Mono', Arial, monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:#93939f; }
+  /* — Botones: radio 8px, no píldora — */
+  .btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 22px; background:var(--canvas-card); color:var(--ink); font-size:14px; font-weight:500; border-radius:var(--r-md); border:1px solid var(--hairline-strong); cursor:pointer; transition:background 150ms ease-out, border-color 150ms ease-out; text-decoration:none; }
+  .btn-primary:hover { background:var(--hairline-soft); border-color:var(--hairline-strong); }
+
+  .btn-brand { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 22px; background:var(--primary); color:var(--on-primary); font-size:14px; font-weight:500; border-radius:var(--r-md); border:1px solid var(--primary); cursor:pointer; transition:background 150ms ease-out; text-decoration:none; }
+  .btn-brand:hover { background:var(--primary-active); border-color:var(--primary-active); }
+
+  .btn-outline { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 22px; background:transparent; color:var(--ink); font-size:14px; font-weight:500; border-radius:var(--r-md); border:1px solid var(--hairline-strong); cursor:pointer; transition:border-color 150ms ease-out, background 150ms ease-out; text-decoration:none; }
+  .btn-outline:hover { border-color:var(--muted); background:rgba(255,255,255,0.03); }
+
+  .mono-label { font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); }
+
+  /* — Superficie de contenido: la caja estándar del sistema — */
+  .surface {
+    background: var(--canvas-card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  }
+  .surface:hover { border-color: var(--hairline-strong); }
+
+  /* — Caja de contenido con profundidad —
+     Gradiente vertical sutil + luz interior arriba + sombra en reposo:
+     la superficie se lee como un plano por encima del lienzo, no como un rectángulo. */
+  .card {
+    position: relative;
+    background: linear-gradient(180deg, #34332b 0%, var(--canvas-card) 100%);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-lg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.045);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--hairline-strong);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+  /* Variante sobre secciones --canvas-mid, para que no se pierda el escalón. */
+  .card--raised {
+    background: linear-gradient(180deg, #3a3930 0%, #34332b 100%);
+  }
+
+  /* Icono de caja: cuadrado redondeado con tinte de marca y borde propio. */
+  .card-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--r-md);
+    background: rgba(245,78,0,0.10);
+    border: 1px solid rgba(245,78,0,0.22);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Imagen que sangra al borde de una .surface (sin doble margen interno). */
+  .surface-bleed { display:block; width:100%; height:auto; border-radius: var(--r-lg) var(--r-lg) 0 0; }
+
+  /* Lámina clara: para artes con fondo crema sobre canvas oscuro. */
+  .plate {
+    background: #f7f5f0;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--r-lg);
+    padding: 16px;
+  }
+}
+
+/* ---- Shell: header full-width + rail izquierdo + contenido ruteado ---- */
+@layer components {
+  .shell {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+    align-items: start;
+  }
+  .rail {
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    border-right: 1px solid var(--hairline);
+    background: var(--canvas-soft);
+    display: flex;
+    flex-direction: column;
+  }
+  .rail-item { transition: background 0.15s, color 0.15s, transform 0.15s; }
+  .rail-item:hover { background: rgba(255,255,255,0.04); transform: translateX(2px); }
+  .rail-scrim { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; }
+  .rail-drawer {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 272px; z-index: 160;
+    background: var(--canvas-soft); border-right: 1px solid var(--hairline); overflow-y: auto;
+    display: flex; flex-direction: column;
+    animation: rail-in 0.22s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  @keyframes rail-in { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+
+  /* Elevación en cards (micro-interacción sobre fondo oscuro) */
+  .lift { transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease; }
+  .lift:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.45); border-color: var(--hairline-strong); }
+}
+
+/* ---- Ambiente: aurora blobs a la deriva (mismo recetario del home) ---- */
+@layer components {
+  .aurora-layer { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .aurora-blob { position:absolute; border-radius:50%; filter: blur(90px); }
+  .aurora-blob--1 {
+    width:650px; height:650px;
+    background: radial-gradient(circle, rgba(159,187,224,.22) 0%, rgba(192,168,221,.12) 50%, transparent 100%);
+    top:-120px; right:-80px;
+    animation: drift 28s ease-in-out infinite alternate;
+  }
+  .aurora-blob--2 {
+    width:500px; height:500px;
+    background: radial-gradient(circle, rgba(223,168,143,.16) 0%, rgba(159,201,162,.10) 55%, transparent 100%);
+    bottom:-60px; left:5%;
+    animation: drift 21s ease-in-out infinite alternate-reverse;
+  }
+  .aurora-blob--3 {
+    width:380px; height:380px;
+    background: radial-gradient(circle, rgba(192,133,50,.14) 0%, rgba(192,168,221,.08) 60%, transparent 100%);
+    top:35%; left:35%;
+    animation: drift 24s ease-in-out 5s infinite;
+  }
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(28px, -38px) scale(1.06); }
+    66%  { transform: translate(-22px, 18px) scale(0.94); }
+    100% { transform: translate(12px, -14px) scale(1.02); }
+  }
+  .neural-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; opacity:0.4; pointer-events:none; }
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .rail { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rail-item, .lift { transition: none; }
+  .rail-item:hover, .lift:hover { transform: none; }
+  .rail-drawer { animation: none; }
+  .aurora-blob { animation: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Campos de formulario sobre lienzo oscuro: el UA los pinta blancos por
+   defecto, lo que dejaba el texto claro ilegible al escribir. */
+@layer base {
+  input, textarea, select {
+    background: var(--canvas-soft);
+    color: var(--ink);
+    font-family: var(--font-sans);
+  }
+  input::placeholder, textarea::placeholder { color: var(--muted-soft); }
+  input:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    -webkit-box-shadow: 0 0 0 1000px var(--canvas-soft) inset;
+  }
 }
