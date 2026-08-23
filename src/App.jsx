@@ -6,8 +6,6 @@ import Hero from './components/Hero';
 import AsiFunciona from './components/AsiFunciona';
 import Introduccion from './components/Introduccion';
 import Curriculum from './components/Curriculum';
-import VideoCurso from './components/VideoCurso';
-import NoPitch from './components/NoPitch';
 import PracticalDemo from './components/PracticalDemo';
 import Instructor from './components/Instructor';
 import EsParaTi from './components/EsParaTi';
@@ -16,6 +14,8 @@ import Organizaciones from './components/Organizaciones';
 import { FAQ, FinalCTA } from './components/Sections';
 
 // Ocultos hasta nueva definición (no borrar):
+// import VideoCurso  → placeholder sin video real (YOUTUBE_VIDEO_ID); vuelve cuando lo haya.
+// import NoPitch     → duplicaba /introduccion y su stat "7 módulos" contradecía el catálogo de 12.
 // import Pricing from './components/Pricing';
 // import Benefits from './components/Benefits';
 // import ResourceCards from './components/ResourceCards';
@@ -46,8 +46,6 @@ function Contenido() {
   return (
     <main>
       <Curriculum />
-      <VideoCurso />
-      <NoPitch />
     </main>
   );
 }

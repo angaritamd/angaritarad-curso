@@ -194,16 +194,19 @@ export default function Curriculum() {
   });
 
   return (
-    <section id="contenido" style={{ background: 'var(--canvas)', padding: '96px 24px' }}>
-      <div style={{ maxWidth: 860, margin: '0 auto' }}>
-        <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>El contenido</span>
-        <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 16px', lineHeight: 1.1 }}>
-          Aprende lo que necesitas,<br />
-          <span style={{ color: 'var(--body)' }}>cuando lo necesitas.</span>
-        </h2>
-        {/* Box de navegación. La narrativa larga vive en /introduccion —
-            aquí solo va lo que hace falta para moverse por el catálogo. */}
-        <div className="card card--static" style={{ maxWidth: 660, padding: '20px 24px', margin: '0 0 48px' }}>
+    <div id="contenido">
+      {/* Banda de entrada sobre --canvas-mid: encabezado y box de navegación.
+          Da el escalón de fondo que antes aportaba NoPitch, sin sumar copy. */}
+      <section style={{ background: 'var(--canvas-mid)', borderBottom: '1px solid var(--hairline)', padding: '96px 24px 56px' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto' }}>
+          <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>El contenido</span>
+          <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 16px', lineHeight: 1.1 }}>
+            Aprende lo que necesitas,<br />
+            <span style={{ color: 'var(--body)' }}>cuando lo necesitas.</span>
+          </h2>
+          {/* Box de navegación. La narrativa larga vive en /introduccion —
+              aquí solo va lo que hace falta para moverse por el catálogo. */}
+          <div className="card card--static card--raised" style={{ maxWidth: 660, padding: '20px 24px', margin: 0 }}>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
             {[
               'No hay orden fijo — elige los skills según lo que necesites.',
@@ -218,6 +221,12 @@ export default function Curriculum() {
           </ul>
         </div>
 
+        </div>
+      </section>
+
+      {/* Catálogo sobre el lienzo base */}
+      <section style={{ background: 'var(--canvas)', padding: '56px 24px 96px' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto' }}>
         {/* Fundamentos — flotan libres, no bloquean nada */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
           <span className="mono-label" style={{ color: 'var(--fundamento)' }}>Fundamentos</span>
@@ -255,9 +264,10 @@ export default function Curriculum() {
           Se abre cuando completas el resto del catálogo.
         </p>
         <SkillCard item={graduacion} open={open.has('M8')} onToggle={() => toggle('M8')} />
-      </div>
+        </div>
+      </section>
 
       <style>{`@media (max-width: 720px) { .catalogo-grid { grid-template-columns: 1fr !important; } }`}</style>
-    </section>
+    </div>
   );
 }
