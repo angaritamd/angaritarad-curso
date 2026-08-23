@@ -54,3 +54,5 @@ No se tocan. Se sirven directamente desde el CDN existente.
 Basado en Cohere design (DESIGN.md). Paleta adaptada con brand red #ef4444.
 
 Editado desde el VPS - 2026-08-23
+
+Tarea via watcher OK
