@@ -123,6 +123,16 @@
     border-color: var(--hairline-strong);
     box-shadow: 0 14px 34px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07);
   }
+  /* Bloque informativo: misma superficie que .card pero inerte al puntero.
+     El lift prometía una interacción que no existe. Va después de .card:hover
+     porque comparten especificidad y gana el orden de aparición. */
+  .card--static { transition: none; }
+  .card--static:hover {
+    transform: none;
+    border-color: var(--hairline);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.045);
+  }
+
   /* Variante sobre secciones --canvas-mid, para que no se pierda el escalón. */
   .card--raised {
     background: linear-gradient(180deg, #3a3930 0%, #34332b 100%);

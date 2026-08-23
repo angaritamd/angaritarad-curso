@@ -201,20 +201,22 @@ export default function Curriculum() {
           Aprende lo que necesitas,<br />
           <span style={{ color: 'var(--body)' }}>cuando lo necesitas.</span>
         </h2>
-        <p style={{ fontSize: 17, color: 'var(--body)', margin: '0 0 12px', lineHeight: 1.65, maxWidth: 660 }}>
-          12 skills de ~20 minutos. Empiezas por M1 y desde ahí eliges: no hay
-          un orden obligatorio ni hay que verlo todo. Tomas la skill el día que
-          te hace falta en la consulta.
-        </p>
-        <p style={{ fontSize: 15, color: 'var(--muted)', margin: '0 0 12px', lineHeight: 1.65, maxWidth: 660 }}>
-          Nunca programas. Configuras tus agentes escribiéndoles en lenguaje
-          natural, igual que le explicarías un caso a un colega.
-        </p>
-        <p style={{ fontSize: 15, color: 'var(--muted)', margin: '0 0 48px', lineHeight: 1.65, maxWidth: 660 }}>
-          Los videos en vivo van tejidos dentro de cada módulo, antes y después
-          de las skills, para darle ritmo al curso y resolver dudas sobre lo que
-          acabas de montar.
-        </p>
+        {/* Box de navegación. La narrativa larga vive en /introduccion —
+            aquí solo va lo que hace falta para moverse por el catálogo. */}
+        <div className="card card--static" style={{ maxWidth: 660, padding: '20px 24px', margin: '0 0 48px' }}>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {[
+              'No hay orden fijo — elige los skills según lo que necesites.',
+              '¿Nuevo en IA? Arranca en orden y no te pierdes.',
+              'Cada módulo abre y cierra con un video que te dice qué hacer.',
+            ].map((linea) => (
+              <li key={linea} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15, lineHeight: 1.6, color: 'var(--body)' }}>
+                <span aria-hidden="true" style={{ flexShrink: 0, marginTop: 8, width: 4, height: 4, borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
+                {linea}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Fundamentos — flotan libres, no bloquean nada */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
