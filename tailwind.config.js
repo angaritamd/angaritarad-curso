@@ -18,6 +18,7 @@ export default {
         "hairline-strong": "#4a4840",
         brand: "#f54e00",
         "brand-dark": "#d04200",
+        fundamento: "#A294CC",
         "aurora-peach": "#dfa88f",
         "aurora-mint": "#9fc9a2",
         "aurora-blue": "#9fbbe0",

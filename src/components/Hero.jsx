@@ -45,8 +45,8 @@ export default function Hero({ onOpenModal }) {
             <button onClick={onOpenModal} className="btn-brand" style={{ fontSize: 16, padding: '16px 32px' }}>
               Quiero aplicar IA en mi consulta <ArrowRight size={16} />
             </button>
-            <Link to="/temario" className="btn-outline" style={{ fontSize: 15, padding: '14px 28px' }}>
-              <PlayCircle size={16} /> Ver el temario
+            <Link to="/contenido" className="btn-outline" style={{ fontSize: 15, padding: '14px 28px' }}>
+              <PlayCircle size={16} /> Ver el contenido
             </Link>
           </div>
 

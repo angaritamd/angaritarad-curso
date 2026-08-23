@@ -37,6 +37,15 @@
   --aurora-lavender: #c0a8dd;
   --aurora-gold:     #c08532;
 
+  /* — Categoría Fundamentos —
+     Violeta de familia aparte del naranja de marca. Derivado de #5B4B8A
+     subiéndole luminancia (L 42%→69%, hue 255° intacto) porque el original
+     daba 2.45:1 sobre --canvas. Este pasa 4.5:1 sobre canvas, card y el
+     tope del gradiente de .card. */
+  --fundamento:      #A294CC;
+  --fundamento-soft: rgba(162,148,204,0.12);
+  --fundamento-line: rgba(162,148,204,0.30);
+
   /* — Semánticos — */
   --success:         #1f8a65;
   --error:           #cf2d56;

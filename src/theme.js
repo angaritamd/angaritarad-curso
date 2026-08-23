@@ -12,5 +12,6 @@ export const CANVAS = '#16150f';
 export const CANVAS_MID = '#26251e';
 export const CANVAS_CARD = '#2f2e26';
 export const CANVAS_SOFT = '#1e1d17';
+export const FUNDAMENTO = '#A294CC';
 export const AURORA_MINT = '#9fc9a2';
 export const AURORA_BLUE = '#9fbbe0';

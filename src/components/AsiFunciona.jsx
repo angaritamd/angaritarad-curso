@@ -41,8 +41,8 @@ export default function AsiFunciona() {
 
           <FadeUp delay={0.14}>
             <div style={{ marginTop: 48, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
-              <Link to="/temario" className="btn-brand" style={{ fontSize: 15, padding: '14px 28px' }}>
-                Ver el temario <ArrowRight size={16} />
+              <Link to="/contenido" className="btn-brand" style={{ fontSize: 15, padding: '14px 28px' }}>
+                Ver el contenido <ArrowRight size={16} />
               </Link>
               <Link to="/agente" className="btn-outline" style={{ fontSize: 15, padding: '13px 26px' }}>
                 El agente en tu consulta

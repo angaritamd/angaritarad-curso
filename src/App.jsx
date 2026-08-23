@@ -1,9 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import { useModal } from './useModal';
 
 import Hero from './components/Hero';
 import AsiFunciona from './components/AsiFunciona';
+import Introduccion from './components/Introduccion';
 import Curriculum from './components/Curriculum';
 import VideoCurso from './components/VideoCurso';
 import NoPitch from './components/NoPitch';
@@ -32,7 +33,16 @@ function Inicio() {
   );
 }
 
-function Temario() {
+function IntroduccionPage() {
+  const { onOpenModal } = useModal();
+  return (
+    <main>
+      <Introduccion onOpenModal={onOpenModal} />
+    </main>
+  );
+}
+
+function Contenido() {
   return (
     <main>
       <Curriculum />
@@ -91,7 +101,10 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Inicio />} />
-        <Route path="/temario" element={<Temario />} />
+        <Route path="/introduccion" element={<IntroduccionPage />} />
+        <Route path="/contenido" element={<Contenido />} />
+        {/* La ruta vieja sigue viva para no romper enlaces ya compartidos. */}
+        <Route path="/temario" element={<Navigate to="/contenido" replace />} />
         <Route path="/agente" element={<Agente />} />
         <Route path="/instructor" element={<InstructorPage />} />
         <Route path="/precio" element={<Precio />} />
