@@ -369,3 +369,5 @@ Prueba lazo cerrado
 Circuito v2 OK
 
 Linear watcher OK
+
+Piloto automatico OK
