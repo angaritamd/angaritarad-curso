@@ -365,3 +365,5 @@ Prueba lazo cerrado
 Prueba lazo cerrado
 
 Prueba lazo cerrado
+
+Circuito v2 OK
