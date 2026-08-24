@@ -375,3 +375,5 @@ Piloto automatico OK
 Slack notif OK
 
 Slack canal OK
+
+PR v6 OK
