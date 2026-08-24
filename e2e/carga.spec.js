@@ -26,7 +26,7 @@ test.describe('Carga de la página principal', () => {
     await page.goto('/');
 
     // Navegación real desde el Hero, no goto directo: valida también el enlace.
-    await page.getByRole('link', { name: /Ver el contenido/i }).click();
+    await page.getByRole('link', { name: /Ver el contenido/i }).first().click();
     await expect(page).toHaveURL(/\/contenido$/);
 
     await expect(
