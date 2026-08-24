@@ -373,3 +373,5 @@ Linear watcher OK
 Piloto automatico OK
 
 Slack notif OK
+
+Slack canal OK
