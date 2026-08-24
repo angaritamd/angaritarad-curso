@@ -371,3 +371,5 @@ Circuito v2 OK
 Linear watcher OK
 
 Piloto automatico OK
+
+Slack notif OK
