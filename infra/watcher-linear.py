@@ -16,6 +16,7 @@ PROYECTOS = {
     "marinasformula": ("/root/proyectos/marinasformula-web", "angaritamd/marinasformula-web", "main"),
     "curso-platform": ("/root/proyectos/angaritarad-curso-platform", "angaritamd/angaritarad-curso-platform", "main"),
     "talleres-openclaw": ("/root/proyectos/talleres-openclaw", "angaritarad-academy/talleres-openclaw", "main"),
+    "clicrad-app": ("/root/proyectos/clicrad-v2", "angaritamd/clicrad-v2", "master"),
 }
 ESTADO_COLA = "Todo"
 ESTADO_TRABAJANDO = "In Progress"
