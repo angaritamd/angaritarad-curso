@@ -73,11 +73,16 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
               <CheckCircle2 size={48} color={AURORA_MINT} style={{ margin: '0 auto 16px' }} />
               <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Listo, quedaste pre-registrado!</h3>
               <p style={{ fontSize: 14, color: 'var(--body)', lineHeight: 1.6 }}>
-                Tu lugar está reservado. El curso inicia el 1 de octubre — escríbenos por WhatsApp al{' '}
-                <a href="https://wa.me/573212340436" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--aurora-mint)', fontWeight: 600 }}>
-                  +57 321 234 0436
-                </a>{' '}
-                para confirmar tu acceso.
+                Tu lugar está reservado. El curso inicia el 1 de octubre —{' '}
+                <a
+                  href="https://chat.whatsapp.com/DwWQ2Z2HERfEpVNQI8B38g"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--aurora-mint)', fontWeight: 600 }}
+                >
+                  únete al grupo del curso
+                </a>
+                {' '}para recibir todos los detalles de acceso.
               </p>
             </div>
           ) : (
