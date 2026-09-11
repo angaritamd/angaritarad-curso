@@ -27,7 +27,9 @@ export default defineConfig({
   webServer: {
     // `vite preview` sirve dist/, así que hay que construir antes; si no,
     // falla con "The directory dist does not exist".
-    command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
+    // Supabase dummy en el MISMO origin del preview: el fetch corre sin CORS y los
+    // page.route() de los tests controlen la respuesta (éxito y fallo).
+    command: `VITE_SUPABASE_URL=http://localhost:4173 VITE_SUPABASE_ANON_KEY=test-anon-key npm run build && npm run preview -- --port ${PORT} --strictPort`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

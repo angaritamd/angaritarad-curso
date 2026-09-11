@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
 import { AURORA_MINT, BRAND, HAIRLINE } from '../theme';
 
@@ -7,23 +7,6 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [countdown, setCountdown] = useState(3);
-
-  useEffect(() => {
-    if (!success) return;
-    setCountdown(3);
-    const timer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          window.location.href = 'https://grupo.angaritarad.com';
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [success]);
 
   if (!isOpen) return null;
 
@@ -60,9 +43,9 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
 
       // Always show success (graceful degradation without Supabase)
       setSuccess(true);
-    } catch (err) {
-      // Still show success to not lose leads
-      setSuccess(true);
+    } catch {
+      // El guardado falló: mostrar error real, no un falso éxito.
+      setError('Hubo un problema al guardar tu registro. Por favor intenta de nuevo.');
     } finally {
       setLoading(false);
     }
@@ -74,7 +57,7 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
         {/* Header */}
         <div style={{ padding: '24px 28px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
-            <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Inscripción</span>
+            <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Pre-registro gratuito</span>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 22, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
               Activa tu agente médico
             </h2>
@@ -88,9 +71,9 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
           {success ? (
             <div style={{ textAlign: 'center', padding: '24px 0' }}>
               <CheckCircle2 size={48} color={AURORA_MINT} style={{ margin: '0 auto 16px' }} />
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Registro exitoso!</h3>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Listo, quedaste pre-registrado!</h3>
               <p style={{ fontSize: 14, color: 'var(--body)', lineHeight: 1.6 }}>
-                Redirigiendo al grupo en {countdown}…
+                Te contactaremos por WhatsApp cuando abran los cupos.
               </p>
             </div>
           ) : (
@@ -115,11 +98,11 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
               {error && <p style={{ color: 'var(--error)', fontSize: 13 }}>{error}</p>}
 
               <button type="submit" disabled={loading} className="btn-brand" style={{ width: '100%', justifyContent: 'center', padding: '13px 24px', fontSize: 15, opacity: loading ? 0.7 : 1 }}>
-                {loading ? 'Procesando…' : 'Confirmar inscripción'}
+                {loading ? 'Guardando…' : 'Quiero pre-registrarme'}
               </button>
 
               <p style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
-                Al inscribirte aceptas nuestra{' '}
+                Al pre-registrarte aceptas nuestra{' '}
                 <button type="button" onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--aurora-blue)', fontSize: 11, textDecoration: 'underline', padding: 0 }}>
                   política de privacidad
                 </button>.

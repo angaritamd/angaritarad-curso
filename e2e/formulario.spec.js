@@ -9,10 +9,6 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/rest/v1/registrations*', (route) =>
     route.fulfill({ status: 201, body: '' })
   );
-  // Tras el éxito el modal redirige a grupo.angaritarad.com a los 3s.
-  // Se bloquea para que la navegación externa no ensucie el test.
-  await page.route('https://grupo.angaritarad.com/**', (route) => route.abort());
-
   await page.goto('/');
   await page.getByRole('button', { name: 'Solicitar acceso' }).click();
 });
@@ -61,23 +57,44 @@ test('al enviar muestra el mensaje de éxito', async ({ page }) => {
   await campos.especialidad.fill('Medicina Interna');
   await campos.whatsapp.fill('+57 300 123 4567');
 
-  await page.getByRole('button', { name: /Confirmar inscripción/i }).click();
+  await page.getByRole('button', { name: /Quiero pre-registrarme/i }).click();
 
   await expect(
-    page.getByRole('heading', { name: /¡Registro exitoso!/i })
+    page.getByRole('heading', { name: /¡Listo, quedaste pre-registrado!/i })
   ).toBeVisible();
-  await expect(page.getByText(/Redirigiendo al grupo/i)).toBeVisible();
+  await expect(page.getByText(/Te contactaremos por WhatsApp/i)).toBeVisible();
 
   // El formulario ya no está en pantalla.
   await expect(campos.nombre).toBeHidden();
 });
 
 test('sin los campos obligatorios no se envía', async ({ page }) => {
-  await page.getByRole('button', { name: /Confirmar inscripción/i }).click();
+  await page.getByRole('button', { name: /Quiero pre-registrarme/i }).click();
 
   // La validación nativa del navegador frena el submit: sigue el formulario.
   await expect(page.getByPlaceholder('Dr. Juan García')).toBeVisible();
   await expect(
-    page.getByRole('heading', { name: /¡Registro exitoso!/i })
+    page.getByRole('heading', { name: /¡Listo, quedaste pre-registrado!/i })
   ).toBeHidden();
+});
+
+test('si el guardado falla muestra error y no un falso éxito', async ({ page }) => {
+  // Sobrescribe el mock del beforeEach para simular un fallo de Supabase.
+  await page.route('**/rest/v1/registrations*', (route) =>
+    route.fulfill({ status: 500, body: '' })
+  );
+
+  const campos = abrirCampos(page);
+  await campos.nombre.fill('Dra. Ana Pérez');
+  await campos.email.fill('ana.perez@clinica.com');
+  await campos.whatsapp.fill('+57 300 123 4567');
+
+  await page.getByRole('button', { name: /Quiero pre-registrarme/i }).click();
+
+  await expect(page.getByText(/Hubo un problema al guardar tu registro/i)).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /¡Listo, quedaste pre-registrado!/i })
+  ).toBeHidden();
+  // El formulario sigue en pantalla para reintentar.
+  await expect(campos.nombre).toBeVisible();
 });
