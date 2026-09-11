@@ -13,8 +13,9 @@ import PricingSimposio from './components/PricingSimposio';
 import Organizaciones from './components/Organizaciones';
 import { FAQ, FinalCTA } from './components/Sections';
 
+import VideoCurso from './components/VideoCurso';
+
 // Ocultos hasta nueva definición (no borrar):
-// import VideoCurso  → placeholder sin video real (YOUTUBE_VIDEO_ID); vuelve cuando lo haya.
 // import NoPitch     → duplicaba /introduccion y su stat "7 módulos" contradecía el catálogo de 12.
 // import Pricing from './components/Pricing';
 // import PrecioInteres → reemplazado 2026-09-11 por PricingSimposio (precios públicos + descuento del Simposio).
@@ -29,6 +30,7 @@ function Inicio() {
   return (
     <main>
       <Hero onOpenModal={onOpenModal} />
+      <VideoCurso />
       <AsiFunciona />
     </main>
   );

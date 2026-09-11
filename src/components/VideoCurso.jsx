@@ -1,10 +1,10 @@
 import { PlayCircle } from 'lucide-react';
 import { BRAND } from '../theme';
 
-// TODO(Miguel): reemplazar PLACEHOLDER por el ID real del video de YouTube
-// (lo que va después de watch?v= en la URL). Mientras sea PLACEHOLDER se
+// ID del video de bienvenida (mismo embed que public/welcome.html).
+// Si algún día vuelve a no haber video, poner 'PLACEHOLDER' y se
 // muestra el recuadro "Video próximamente".
-const YOUTUBE_VIDEO_ID = 'PLACEHOLDER';
+const YOUTUBE_VIDEO_ID = 'yzp9pkPIYwI';
 
 export default function VideoCurso() {
   const hasVideo = YOUTUBE_VIDEO_ID !== 'PLACEHOLDER';
