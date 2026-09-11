@@ -1,7 +1,7 @@
 // Sección de precios lanzada el día del IV Simposio (2026-09-11).
 // Contenido y paleta teal vienen del welcome pack del curso (ver public/welcome.html);
 // por eso la sección es una "isla clara" sobre el canvas oscuro del sitio.
-// Los botones abren el modal de registro existente — no hay pasarela de pago embebida aún.
+// Botones de pago: placeholder visual sin acción (title="Coming soon") hasta tener pasarela (Wompi/PSE).
 
 const TEAL = '#1D9E75';
 const TEAL_LIGHT = '#E1F5EE';
@@ -41,7 +41,7 @@ const faqs = [
   },
 ];
 
-export default function PricingSimposio({ onOpenModal }) {
+export default function PricingSimposio() {
   const btnStyle = {
     width: '100%', padding: '0.875rem 1.5rem', borderRadius: 100, background: TEAL,
     color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer',
@@ -82,7 +82,7 @@ export default function PricingSimposio({ onOpenModal }) {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 600, color: TEAL, lineHeight: 1 }}>$882.000</div>
             </div>
 
-            <button onClick={onOpenModal} style={btnStyle}>Pagar ahora</button>
+            <button title="Coming soon" style={btnStyle}>Pagar ahora</button>
 
             <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: `0.5px solid ${BORDER}` }}>
               {checks.map((c) => (
@@ -114,7 +114,7 @@ export default function PricingSimposio({ onOpenModal }) {
               <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem', fontWeight: 600 }}>Total con descuento: $882.000</div>
             </div>
 
-            <button onClick={onOpenModal} style={btnStyle}>Pagar en 2 cuotas</button>
+            <button title="Coming soon" style={btnStyle}>Pagar en 2 cuotas</button>
 
             <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: `1.5px solid ${TEAL_LIGHT}` }}>
               {[...checks, '✓ Sin interés'].map((c, i) => (
@@ -155,7 +155,7 @@ export default function PricingSimposio({ onOpenModal }) {
         <div style={{ textAlign: 'center', marginTop: '2.5rem', padding: '2rem', background: TEAL_LIGHT, borderRadius: 12 }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.75rem' }}>¿Listo para comenzar?</h3>
           <p style={{ fontSize: 14, color: TEAL, marginBottom: '1.5rem' }}>Los cupos del Simposio tienen este 10% de descuento. Expira cuando comience el curso el 1 de octubre.</p>
-          <button onClick={onOpenModal} style={{ ...btnStyle, width: 'auto', padding: '0.875rem 2rem', fontSize: 15 }}>Inscribirse ahora</button>
+          <button title="Coming soon" style={{ ...btnStyle, width: 'auto', padding: '0.875rem 2rem', fontSize: 15 }}>Inscribirse ahora</button>
         </div>
 
       </div>

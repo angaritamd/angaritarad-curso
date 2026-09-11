@@ -73,7 +73,7 @@ function Precio() {
   return (
     <main>
       <EsParaTi />
-      <PricingSimposio onOpenModal={onOpenModal} />
+      <PricingSimposio />
       <FinalCTA onOpenModal={onOpenModal} />
     </main>
   );
