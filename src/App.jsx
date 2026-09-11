@@ -9,7 +9,7 @@ import Curriculum from './components/Curriculum';
 import PracticalDemo from './components/PracticalDemo';
 import Instructor from './components/Instructor';
 import EsParaTi from './components/EsParaTi';
-import PrecioInteres from './components/PrecioInteres';
+import PricingSimposio from './components/PricingSimposio';
 import Organizaciones from './components/Organizaciones';
 import { FAQ, FinalCTA } from './components/Sections';
 
@@ -17,6 +17,7 @@ import { FAQ, FinalCTA } from './components/Sections';
 // import VideoCurso  → placeholder sin video real (YOUTUBE_VIDEO_ID); vuelve cuando lo haya.
 // import NoPitch     → duplicaba /introduccion y su stat "7 módulos" contradecía el catálogo de 12.
 // import Pricing from './components/Pricing';
+// import PrecioInteres → reemplazado 2026-09-11 por PricingSimposio (precios públicos + descuento del Simposio).
 // import Benefits from './components/Benefits';
 // import ResourceCards from './components/ResourceCards';
 // TargetAudience (Sections.jsx) reemplazada por EsParaTi.
@@ -72,7 +73,7 @@ function Precio() {
   return (
     <main>
       <EsParaTi />
-      <PrecioInteres onOpenModal={onOpenModal} />
+      <PricingSimposio onOpenModal={onOpenModal} />
       <FinalCTA onOpenModal={onOpenModal} />
     </main>
   );

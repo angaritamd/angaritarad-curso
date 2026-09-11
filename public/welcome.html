@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenida — Curso AngaritaRad-AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #1D9E75; --teal-light: #E1F5EE; --teal-dark: #085041;
+    --amber: #BA7517; --amber-light: #FAEEDA; --amber-dark: #633806;
+    --text: #1a1a1a; --text-muted: #6b6b6b; --text-hint: #9e9e9e;
+    --border: rgba(0,0,0,0.1); --surface: #f8f8f6; --white: #ffffff;
+    --radius: 12px; --radius-sm: 8px;
+  }
+  html, body { font-family: 'DM Sans', sans-serif; background: #f0efe9; color: var(--text); min-height: 100vh; }
+  .topbar { height: 3px; background: linear-gradient(90deg, var(--teal) 0%, #34C896 100%); width: 100%; }
+  .header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark { width: 36px; height: 36px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: 600; font-family: 'DM Mono', monospace; }
+  .logo-name { font-size: 17px; font-weight: 600; color: var(--text); }
+  .logo-sub { font-size: 13px; color: var(--text-muted); margin-top: 1px; }
+  .header-badge { font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 100px; background: var(--teal-light); color: var(--teal-dark); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .hero { padding: 3.5rem 3rem 2.5rem; max-width: 960px; margin: 0 auto; }
+  .hero-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 100px; background: var(--teal-light); color: var(--teal-dark); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero-title { font-size: 36px; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; color: var(--text); }
+  .hero-sub { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+
+  .main { max-width: 960px; margin: 0 auto; padding: 0 3rem 4rem; }
+
+  .video-section { margin: 2rem 0; }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border);
+    background: var(--surface);
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    border-radius: var(--radius);
+  }
+
+  .section-title { font-size: 24px; font-weight: 600; color: var(--text); margin: 2.5rem 0 1.5rem 0; }
+  .section-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+  .feature-box {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .feature-icon { font-size: 28px; margin-bottom: 0.75rem; }
+  .feature-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+  .feature-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  .module-item {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem;
+  }
+  .module-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    flex-shrink: 0;
+    width: 60px;
+  }
+  .module-content { flex: 1; }
+  .module-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .module-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  .agent-box {
+    background: linear-gradient(135deg, var(--teal-light) 0%, #E8FBFF 100%);
+    border: 1.5px solid var(--teal);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+  .agent-title { font-size: 18px; font-weight: 600; color: var(--teal-dark); margin-bottom: 1rem; }
+  .agent-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .agent-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+  .agent-step { display: flex; align-items: flex-start; gap: 12px; }
+  .agent-step-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 50%; background: var(--teal);
+    color: white; font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .agent-step-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  .footer { max-width: 960px; margin: 0 auto; padding: 2rem 3rem; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .footer-note { font-size: 12px; color: var(--text-hint); font-family: 'DM Mono', monospace; }
+  .footer-link { font-size: 13px; color: var(--teal); text-decoration: none; font-weight: 500; }
+  .footer-link:hover { color: var(--teal-dark); }
+
+  @media (max-width: 700px) {
+    .header { padding: 1.25rem 1.5rem; flex-direction: column; gap: 1rem; }
+    .hero { padding: 2rem 1.5rem 1.5rem; }
+    .hero-title { font-size: 26px; }
+    .main { padding: 0 1.5rem 3rem; }
+    .features { grid-template-columns: 1fr; }
+    .modules-grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+    .agent-box { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-mark">AR</div>
+    <div>
+      <div class="logo-name">AngaritaRad-AI</div>
+      <div class="logo-sub">Bienvenida al Curso</div>
+    </div>
+  </div>
+  <span class="header-badge">Inicio: 1 Octubre</span>
+</header>
+
+<div class="hero">
+  <span class="hero-tag">¡Bienvenido, Dr!</span>
+  <h1 class="hero-title">Tu agente de IA clínica está listo</h1>
+  <p class="hero-sub">En este curso, activarás un asistente inteligente en WhatsApp entrenado con tu criterio clínico. Desde la primera activación hasta la publicación de tu trabajo — todo integrado, sin código, directamente donde trabajas.</p>
+</div>
+
+<main class="main">
+
+  <div class="video-section">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/yzp9pkPIYwI" title="YouTube video player" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="section-title">Qué incluye el curso</h2>
+    <p class="section-desc">Un sistema integral de IA clínica para médicos que quieren trabajar más inteligentemente. Desde la documentación asistida hasta la automatización completa de tu flujo de trabajo.</p>
+
+    <div class="features">
+      <div class="feature-box">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Agente en WhatsApp</div>
+        <div class="feature-desc">Asistente personalizado que responde tus preguntas clínicas directamente en WhatsApp, integrado con tus criterios y experiencia.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">📝</div>
+        <div class="feature-title">Documentación asistida</div>
+        <div class="feature-desc">Genera notas SOAP, remisiones y certificados en segundos. La IA propone, tú decides. Mantén el control total.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">⚙️</div>
+        <div class="feature-title">Automatización sin código</div>
+        <div class="feature-desc">Flujos de n8n que trabajan mientras duermes. Procesa datos, categoriza pacientes, integra tus sistemas existentes.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">Tu segunda memoria (RAG)</div>
+        <div class="feature-desc">El agente busca en tus propias fuentes — protocolos, guías, casos previos — antes de responder. Contextual, preciso, tuyo.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Motor de publicación</div>
+        <div class="feature-desc">Convierte tus hallazgos en artículos, resúmenes o posts listos para publicar. Directamente desde tus notas.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🎓</div>
+        <div class="feature-title">Certificación con DOI</div>
+        <div class="feature-desc">Al terminar, obtendrás un DOI (Zenodo) y GitHub como portafolio auditable. Credencial profesional, no PDF.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Metodología: Clinical Coder vs Hospital Coder</h2>
+    <p class="section-desc">El curso ofrece dos rutas equivalentes, cada una optimizada para tu contexto de trabajo. Elige la que se alinea con tu práctica clínica.</p>
+
+    <div class="features" style="margin-top: 1.5rem;">
+      <div class="feature-box">
+        <div class="feature-title">Clinical Coder</div>
+        <div class="feature-desc"><strong>Para médicos en práctica privada o consultorios independientes:</strong> Activa tu agente, documenta casos, automatiza procesos clínicos, publica hallazgos sin intermediarios.</div>
+      </div>
+      <div class="feature-box">
+        <div class="feature-title">Hospital Coder</div>
+        <div class="feature-desc"><strong>Para médicos en instituciones:</strong> Amplía a 4 pilares — documentación, integración institucional, gobernanza de datos y soporte a colegas en el equipo.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Tu recorrido: 8 módulos prácticos</h2>
+    <p class="section-desc">Cada módulo toma ~2 horas. La práctica es directa en WhatsApp. No lecturas pasivas — haces, aprendes, iteras.</p>
+
+    <div class="modules-grid">
+      <div class="module-item">
+        <div class="module-num">M · 01</div>
+        <div class="module-content">
+          <div class="module-title">Activa tu asistente</div>
+          <div class="module-desc">Agente en WhatsApp + repositorio GitHub abierto. Tu CV digital auditable comienza hoy.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 02</div>
+        <div class="module-content">
+          <div class="module-title">Documentación + razonamiento</div>
+          <div class="module-desc">SOAP, remisiones, certificados. El agente propone, tú decides con Dr. Jarvis.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 03</div>
+        <div class="module-content">
+          <div class="module-title">Tu ruta: Clinical vs Hospital</div>
+          <div class="module-desc">Elige tu camino. Los 4 pilares del Hospital Coder si vas en equipo.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 04</div>
+        <div class="module-content">
+          <div class="module-title">Automatización con n8n</div>
+          <div class="module-desc">Flujos que trabajan sin ti. Qué automatizar primero — y qué nunca.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 05</div>
+        <div class="module-content">
+          <div class="module-title">Tu segunda memoria (RAG)</div>
+          <div class="module-desc">El agente busca en tus fuentes. Contextual, preciso, tuyo. Sin código.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 06</div>
+        <div class="module-content">
+          <div class="module-title">Motor de publicación</div>
+          <div class="module-desc">De tus notas a artículos listos para publicar. NotebookLM en tu flujo.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 07</div>
+        <div class="module-content">
+          <div class="module-title">IA en diagnóstico por imágenes</div>
+          <div class="module-desc">Claude Vision en radiografías, fotos de piel, trazados. No reemplaza, asiste.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M · 08</div>
+        <div class="module-content">
+          <div class="module-title">Cierre, CV digital y próximos pasos</div>
+          <div class="module-desc">DOI en Zenodo, portafolio en GitHub, comunidad y roadmap personal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="agent-box">
+    <h2 class="agent-title">Cómo funciona el agente de WhatsApp</h2>
+    <p class="agent-desc">Tu compañero clínico está disponible 24/7 en el canal donde ya trabajas. Aquí está el flujo:</p>
+
+    <div class="agent-steps">
+      <div class="agent-step">
+        <div class="agent-step-num">1</div>
+        <div class="agent-step-text"><strong>Envías un mensaje:</strong> "Paciente con dolor torácico pleurítico. Radiografía normal." El agente recibe tu contexto.</div>
+      </div>
+      <div class="agent-step">
+        <div class="agent-step-num">2</div>
+        <div class="agent-step-text"><strong>El agente piensa:</strong> Busca en tus protocolos (RAG), aplica tu criterio clínico, genera un borrador de diferencial razonado.</div>
+      </div>
+      <div class="agent-step">
+        <div class="agent-step-num">3</div>
+        <div class="agent-step-text"><strong>Tú revises y decides:</strong> Apruebas, editas o rechazas. Mantiene el control médico en tus manos. Nunca toma decisión clínica sola.</div>
+      </div>
+      <div class="agent-step">
+        <div class="agent-step-num">4</div>
+        <div class="agent-step-text"><strong>Aprende de ti:</strong> Cada iteración refina cómo te responde. Con el tiempo, es más preciso con tu estilo.</div>
+      </div>
+      <div class="agent-step">
+        <div class="agent-step-num">5</div>
+        <div class="agent-step-text"><strong>Automatiza tu flujo:</strong> Integra con n8n para enlazar a tu EHR, generar reportes, categorizar pacientes — todo sin intervención manual.</div>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin-top: 2.5rem;">
+    <h2 class="section-title">Próximos pasos</h2>
+    <p class="section-desc">El curso comienza <strong>1 de octubre</strong>. Tendrás acceso a:</p>
+    <ul style="margin-left: 1.5rem; margin-top: 1rem; font-size: 14px; color: var(--text-muted); line-height: 1.8;">
+      <li>Todos los módulos en el paquete (acceso inmediato).</li>
+      <li>Acceso a tu agente en WhatsApp para práctica directa.</li>
+      <li>Comunidad privada (Telegram) con otros estudiantes y soporte.</li>
+      <li>Documentación y recetas (templates) listas para usar.</li>
+      <li>Dos video-recaps en vivo (mitad y cierre del curso).</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span class="footer-note">AngaritaRad-AI · Inteligencia artificial clínica para médicos latinoamericanos · 2026</span>
+  <a class="footer-link" href="https://curso.angaritarad.com" target="_blank">Volver a curso.angaritarad.com →</a>
+</footer>
+
+</body>
+</html>

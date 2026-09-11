@@ -41,12 +41,15 @@ test.describe('Carga de la página principal', () => {
   test('la sección de Precio (Pricing) es visible', async ({ page }) => {
     await page.goto('/precio');
 
-    await expect(page.getByText('Inversión', { exact: true })).toBeVisible();
     await expect(
-      page.getByRole('heading', { name: /Un solo precio, todo incluido/i })
+      page.getByRole('heading', { name: /Inversión en tu desarrollo/i })
+    ).toBeVisible();
+    await expect(page.getByText('Descuento por Simposio')).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: /Pagar ahora/i })
     ).toBeVisible();
     await expect(
-      page.getByRole('button', { name: /Me interesa el curso/i })
+      page.getByRole('button', { name: /Inscribirse ahora/i })
     ).toBeVisible();
   });
 

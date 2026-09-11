@@ -53,6 +53,24 @@ export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) 
             >
               angaritarad.com
             </a>
+            <a
+              href="https://academy.angaritarad.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header-link"
+              style={{ textDecoration: 'none', color: TEXT, fontSize: 14 }}
+            >
+              Academy
+            </a>
+            <a
+              href="https://openrad.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="header-link"
+              style={{ textDecoration: 'none', color: TEXT, fontSize: 14 }}
+            >
+              Blog
+            </a>
             <button onClick={onOpenModal} className="btn-brand" style={{ padding: '9px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
               Solicitar acceso
             </button>
