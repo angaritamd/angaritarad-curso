@@ -22,7 +22,7 @@ const abrirCampos = (page) => ({
 
 test('el formulario aparece con todos sus campos', async ({ page }) => {
   await expect(
-    page.getByRole('heading', { name: /Activa tu agente médico/i })
+    page.getByRole('heading', { name: /Reserva tu cupo/i })
   ).toBeVisible();
 
   const campos = abrirCampos(page);
@@ -62,7 +62,7 @@ test('al enviar muestra el mensaje de éxito', async ({ page }) => {
   await expect(
     page.getByRole('heading', { name: /¡Listo, quedaste pre-registrado!/i })
   ).toBeVisible();
-  await expect(page.getByText(/Te contactaremos por WhatsApp/i)).toBeVisible();
+  await expect(page.getByText(/Tu lugar está reservado/i)).toBeVisible();
 
   // El formulario ya no está en pantalla.
   await expect(campos.nombre).toBeHidden();

@@ -59,7 +59,7 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
           <div>
             <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Pre-registro gratuito</span>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 22, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
-              Activa tu agente médico
+              Reserva tu cupo
             </h2>
           </div>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--muted)' }}>
@@ -73,7 +73,7 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
               <CheckCircle2 size={48} color={AURORA_MINT} style={{ margin: '0 auto 16px' }} />
               <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Listo, quedaste pre-registrado!</h3>
               <p style={{ fontSize: 14, color: 'var(--body)', lineHeight: 1.6 }}>
-                Te contactaremos por WhatsApp cuando abran los cupos.
+                Tu lugar está reservado. El curso inicia el 1 de octubre — te escribimos por WhatsApp con los detalles de acceso.
               </p>
             </div>
           ) : (

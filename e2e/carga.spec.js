@@ -59,7 +59,7 @@ test.describe('Carga de la página principal', () => {
     await page.getByRole('button', { name: 'Solicitar acceso' }).click();
 
     await expect(
-      page.getByRole('heading', { name: /Activa tu agente médico/i })
+      page.getByRole('heading', { name: /Reserva tu cupo/i })
     ).toBeVisible();
     await expect(
       page.getByRole('button', { name: /Quiero pre-registrarme/i })
