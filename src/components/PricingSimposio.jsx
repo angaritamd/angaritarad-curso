@@ -1,21 +1,21 @@
 // Sección de precios lanzada el día del IV Simposio (2026-09-11).
 // Reprecio 2026-09-13: $450.000 único / 2×$238.000 — reemplaza los $882.000 con 10% de Simposio, que ya no aplica.
-// Contenido y paleta teal vienen del welcome pack del curso (ver public/welcome.html);
-// por eso la sección es una "isla clara" sobre el canvas oscuro del sitio.
+// Rediseño 2026-09-13: se abandona la "isla clara" teal del welcome pack por el sistema dark
+// del sitio (canvas/naranja/Inter+JetBrains Mono). id="precio" es el ancla del sidebar.
 // Botones de pago: placeholder visual sin acción (title="Coming soon") hasta tener pasarela (Wompi/PSE).
 
-const TEAL = '#1D9E75';
-const TEAL_LIGHT = '#E1F5EE';
-const TEAL_DARK = '#085041';
-const AMBER_LIGHT = '#FAEEDA';
-const AMBER = '#BA7517';
-const AMBER_DARK = '#633806';
-const TEXT = '#1a1a1a';
-const MUTED = '#6b6b6b';
-const HINT = '#9e9e9e';
-const BORDER = 'rgba(0,0,0,0.1)';
+import { Check, Calendar, ShieldCheck } from 'lucide-react';
+import { BRAND } from '../theme';
 
-const checks = ['✓ Acceso inmediato', '✓ Todos los módulos', '✓ Comunidad + soporte'];
+const incluye = [
+  '8 módulos de contenido, de cero a resultados',
+  'Tu propio asistente de IA con ~2 meses de créditos incluidos',
+  'Práctica en WhatsApp con tu agente personal',
+  'Comunidad privada + soporte durante el curso',
+  'Certificación auditable (DOI + GitHub), no un PDF',
+];
+
+const checksBase = ['Acceso inmediato', 'Todos los módulos', 'Comunidad + soporte'];
 
 const infoItems = [
   { label: 'Inicio del curso', value: '1 de octubre', desc: 'Acceso inmediato a todos los módulos.' },
@@ -42,130 +42,150 @@ const faqs = [
   },
 ];
 
-export default function PricingSimposio() {
-  const btnStyle = {
-    width: '100%', padding: '0.875rem 1.5rem', borderRadius: 100, background: TEAL,
-    color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer',
-    transition: 'all 0.2s ease', fontFamily: 'inherit',
-  };
+const h3Style = { fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 16, color: 'var(--ink)', margin: 0, letterSpacing: '-0.01em' };
+const monoPrice = { fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1 };
 
+function CheckRow({ children, strong }) {
   return (
-    <section id="pricing" style={{ background: '#f0efe9', padding: '4rem 0 0' }}>
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 3rem 4rem' }} className="ps-wrap">
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+      <Check size={15} color={BRAND} style={{ flexShrink: 0, marginTop: 3 }} />
+      <span style={{ fontSize: 13, lineHeight: 1.5, color: strong ? 'var(--ink)' : 'var(--body)' }}>{children}</span>
+    </div>
+  );
+}
 
-        <div style={{ marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: 28, fontWeight: 600, color: TEXT, marginBottom: '0.5rem' }} className="ps-title">Inversión en tu desarrollo</h2>
-          <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.7, maxWidth: 640 }}>Un curso práctico, integral y auditable. La inversión refleja el valor de tomar el control de tu IA clínica desde hoy.</p>
+export default function PricingSimposio() {
+  return (
+    <section id="precio" style={{ background: 'var(--canvas)', padding: '96px 24px', scrollMarginTop: 'calc(var(--nav-h) + 16px)' }}>
+      <div style={{ maxWidth: 1120, margin: '0 auto' }}>
+
+        {/* Encabezado */}
+        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+          <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>Inversión</span>
+          <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 16px' }}>
+            Inversión en tu desarrollo
+          </h2>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--body)', maxWidth: 620, margin: '0 auto 20px' }}>
+            Un curso práctico, integral y auditable. La inversión refleja el valor de tomar el control de tu IA clínica desde hoy.
+          </p>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 'var(--r-pill)', background: 'rgba(245,78,0,0.10)', border: '1px solid rgba(245,78,0,0.25)' }}>
+            <Calendar size={14} color={BRAND} />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--ink)' }}>
+              Inicia el 1 de octubre · Cupos limitados
+            </span>
+          </span>
         </div>
 
-        {/* Price Cards Grid */}
-        <div className="ps-grid2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', margin: '2rem 0' }}>
+        {/* Value stack: qué te llevas, antes del precio */}
+        <div className="card card--static" style={{ padding: '28px 32px', marginBottom: 24 }}>
+          <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>Tu inscripción incluye</span>
+          <div className="precio-incluye" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px 32px' }}>
+            {incluye.map((item) => <CheckRow key={item} strong>{item}</CheckRow>)}
+          </div>
+        </div>
 
-          {/* Card 1: Pago único */}
-          <div style={{ background: '#fff', border: `0.5px solid ${BORDER}`, borderRadius: 12, padding: '2rem', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: HINT, marginBottom: '1rem' }}>Pago único</div>
+        {/* Tarjetas de precio */}
+        <div className="precio-grid2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: MUTED, marginBottom: '0.5rem' }}>Precio total</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEXT, lineHeight: 1 }}>$450.000</div>
-              <div style={{ fontSize: 13, color: MUTED, marginTop: '0.5rem' }}>
-                Pesos colombianos · <s style={{ color: HINT }}>antes $882.000</s>
-              </div>
+          {/* Card 1: Pago único (destacada) */}
+          <div className="card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', border: '1px solid rgba(245,78,0,0.45)', boxShadow: '0 1px 2px rgba(0,0,0,0.35), 0 0 0 1px rgba(245,78,0,0.12), inset 0 1px 0 rgba(255,255,255,0.045)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+              <span className="mono-label" style={{ color: 'var(--ink)' }}>Pago único</span>
+              <span style={{ background: 'var(--primary)', color: 'var(--on-primary)', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', padding: '5px 12px', borderRadius: 'var(--r-pill)' }}>
+                Más elegido
+              </span>
             </div>
 
-            <div style={{ background: TEAL_LIGHT, border: `1.5px solid ${TEAL}`, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.25rem' }}>🤖 Asistente de IA incluido</div>
-              <div style={{ fontSize: 12, color: TEAL_DARK, lineHeight: 1.6 }}>
-                Configuras tu propio asistente de IA con créditos incluidos, que sigue trabajando para ti después del curso.
-              </div>
+            <div style={{ marginBottom: 8 }}>
+              <span style={{ ...monoPrice, fontSize: 40 }}>$450.000</span>
+              <span style={{ fontSize: 14, color: 'var(--muted)', marginLeft: 8 }}>COP</span>
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 24 }}>
+              <s>Antes $882.000</s> · Ahorras $26.000 frente al plan en cuotas
             </div>
 
-            <button title="Coming soon" style={btnStyle}>Pagar ahora</button>
+            <button title="Coming soon" className="btn-brand" style={{ width: '100%', fontSize: 15, padding: '13px 22px' }}>Pagar ahora</button>
 
-            <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: `0.5px solid ${BORDER}` }}>
-              {checks.map((c) => (
-                <div key={c} style={{ fontSize: 12, color: HINT, marginTop: c === checks[0] ? 0 : '0.5rem' }}>{c}</div>
-              ))}
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--hairline)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {checksBase.map((c) => <CheckRow key={c}>{c}</CheckRow>)}
             </div>
           </div>
 
-          {/* Card 2: 2 cuotas (destacada) */}
-          <div style={{ background: '#fff', border: `1.5px solid ${TEAL}`, borderRadius: 12, padding: '2rem', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, right: 0, background: TEAL, color: '#fff', padding: '0.4rem 1rem', fontSize: 10, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Recomendado</div>
-
-            <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: TEAL_DARK, marginBottom: '1rem', marginTop: '0.25rem' }}>2 cuotas sin interés</div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem' }}>Por cuota</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEAL, lineHeight: 1 }}>$238.000</div>
-              <div style={{ fontSize: 13, color: TEAL_DARK, marginTop: '0.5rem' }}>
-                Pesos colombianos · <s style={{ color: HINT }}>antes $441.000 c/u</s>
-              </div>
+          {/* Card 2: 2 cuotas */}
+          <div className="card" style={{ padding: '32px', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24, minHeight: 26 }}>
+              <span className="mono-label">2 cuotas sin interés</span>
             </div>
 
-            <div style={{ background: AMBER_LIGHT, border: `1.5px solid ${AMBER}`, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: AMBER_DARK, marginBottom: '0.25rem' }}>📅 Cronograma</div>
-              <div style={{ fontSize: 12, color: AMBER_DARK, lineHeight: 1.6 }}>
-                Cuota 1: Al inscribirte. Cuota 2: 30 días después.
-              </div>
+            <div style={{ marginBottom: 8 }}>
+              <span style={{ ...monoPrice, fontSize: 40 }}>$238.000</span>
+              <span style={{ fontSize: 14, color: 'var(--muted)', marginLeft: 8 }}>COP / cuota</span>
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 24 }}>
+              <s>Antes $441.000 c/u</s> · Total $476.000 · Cuota 1 al inscribirte, cuota 2 a los 30 días
             </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem', fontWeight: 600 }}>Total: $476.000</div>
-            </div>
+            <button title="Coming soon" className="btn-outline" style={{ width: '100%', fontSize: 15, padding: '13px 22px' }}>Pagar en 2 cuotas</button>
 
-            <button title="Coming soon" style={btnStyle}>Pagar en 2 cuotas</button>
-
-            <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: `1.5px solid ${TEAL_LIGHT}` }}>
-              {[...checks, '✓ Sin interés'].map((c, i) => (
-                <div key={c} style={{ fontSize: 12, color: TEAL_DARK, marginTop: i === 0 ? 0 : '0.5rem', fontWeight: 500 }}>{c}</div>
-              ))}
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--hairline)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[...checksBase, 'Sin interés'].map((c) => <CheckRow key={c}>{c}</CheckRow>)}
             </div>
           </div>
 
         </div>
 
-        {/* Key Info Box */}
-        <div style={{ background: 'linear-gradient(135deg, #f5fdf9 0%, #E1F5EE 100%)', border: '0.5px solid rgba(29, 158, 117, 0.3)', borderRadius: 12, padding: '1.5rem', margin: '2rem 0' }}>
-          <div className="ps-grid3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
-            {infoItems.map((item) => (
-              <div key={item.label}>
-                <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: TEAL_DARK, marginBottom: '0.5rem' }}>{item.label}</div>
-                <div style={{ fontSize: 16, fontWeight: 600, color: TEAL }}>{item.value}</div>
-                <div style={{ fontSize: 12, color: MUTED, marginTop: '0.25rem' }}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
+        {/* Garantía */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 48 }}>
+          <ShieldCheck size={15} color="var(--muted)" />
+          <span style={{ fontSize: 13, color: 'var(--muted)' }}>Garantía de 7 días: si cambias de parecer, devolvemos tu inversión sin preguntas.</span>
         </div>
+
+        {/* Datos clave */}
+        <div className="card card--static precio-grid3" style={{ padding: '28px 32px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32, marginBottom: 48 }}>
+          {infoItems.map((item) => (
+            <div key={item.label}>
+              <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>{item.label}</span>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 600, color: BRAND }}>{item.value}</div>
+              <div style={{ fontSize: 13, color: 'var(--body)', marginTop: 4, lineHeight: 1.6 }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* TODO testimonial: bloque listo pero sin datos reales — activar cuando haya
+            una cita verificada de un alumno (nombre + especialidad + permiso de uso).
+        <figure className="card card--static" style={{ padding: '28px 32px', marginBottom: 48 }}>
+          <blockquote style={{ margin: 0, fontSize: 16, lineHeight: 1.7, color: 'var(--ink)' }}>“…”</blockquote>
+          <figcaption style={{ marginTop: 12, fontSize: 13, color: 'var(--muted)' }}>— Nombre, especialidad</figcaption>
+        </figure>
+        */}
 
         {/* FAQ */}
-        <div style={{ marginTop: '2rem' }}>
-          <h3 style={{ fontSize: 18, fontWeight: 600, color: TEXT, marginBottom: '1rem' }}>Preguntas frecuentes</h3>
-          <div className="ps-grid2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+        <div style={{ marginBottom: 48 }}>
+          <h3 style={{ ...h3Style, fontSize: 18, marginBottom: 20 }}>Preguntas frecuentes</h3>
+          <div className="precio-grid2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             {faqs.map((f) => (
-              <div key={f.q} style={{ background: '#f8f8f6', borderRadius: 12, padding: '1.5rem' }}>
-                <div style={{ fontSize: 14, fontWeight: 600, color: TEXT, marginBottom: '0.75rem' }}>{f.q}</div>
-                <div style={{ fontSize: 13, color: MUTED, lineHeight: 1.7 }}>{f.a}</div>
+              <div key={f.q} style={{ background: 'var(--canvas-soft)', border: '1px solid var(--hairline)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                <div style={{ ...h3Style, fontSize: 14, marginBottom: 10 }}>{f.q}</div>
+                <div style={{ fontSize: 13, color: 'var(--body)', lineHeight: 1.7 }}>{f.a}</div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA Bottom */}
-        <div style={{ textAlign: 'center', marginTop: '2.5rem', padding: '2rem', background: TEAL_LIGHT, borderRadius: 12 }}>
-          <h3 style={{ fontSize: 18, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.75rem' }}>¿Listo para comenzar?</h3>
-          <p style={{ fontSize: 14, color: TEAL, marginBottom: '1.5rem' }}>El curso comienza el 1 de octubre. Asegura tu cupo antes del inicio.</p>
-          <button title="Coming soon" style={{ ...btnStyle, width: 'auto', padding: '0.875rem 2rem', fontSize: 15 }}>Inscribirse ahora</button>
+        {/* CTA de cierre */}
+        <div className="card card--static" style={{ textAlign: 'center', padding: '40px 32px' }}>
+          <h3 style={{ ...h3Style, fontSize: 20, marginBottom: 10 }}>¿Listo para comenzar?</h3>
+          <p style={{ fontSize: 14, color: 'var(--body)', margin: '0 0 24px' }}>El curso comienza el 1 de octubre. Asegura tu cupo antes del inicio.</p>
+          <button title="Coming soon" className="btn-brand" style={{ padding: '13px 32px', fontSize: 15 }}>Inscribirse ahora</button>
         </div>
 
       </div>
 
       <style>{`
-        @media (max-width: 700px) {
-          #pricing .ps-wrap { padding: 0 1.5rem 3rem !important; }
-          #pricing .ps-grid2 { grid-template-columns: 1fr !important; }
-          #pricing .ps-grid3 { grid-template-columns: 1fr !important; }
-          #pricing .ps-title { font-size: 22px !important; }
+        @media (max-width: 768px) {
+          #precio .precio-grid2 { grid-template-columns: 1fr !important; }
+          #precio .precio-grid3 { grid-template-columns: 1fr !important; gap: 24px !important; }
+          #precio .precio-incluye { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

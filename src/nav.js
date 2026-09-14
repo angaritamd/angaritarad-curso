@@ -7,7 +7,8 @@ export const NAV_ITEMS = [
   { to: '/contenido', label: 'Contenido', Icon: BookOpen },
   { to: '/agente', label: 'El agente en tu consulta', Icon: Bot },
   { to: '/instructor', label: 'Instructor', Icon: GraduationCap },
-  { to: '/precio', label: 'Precio', Icon: CreditCard },
+  // El hash lleva directo a la sección de tarifas (id="precio"); Layout resuelve el scroll.
+  { to: '/precio#precio', label: 'Precio', Icon: CreditCard },
   { to: '/preguntas', label: 'Preguntas', Icon: CircleHelp },
   { to: '/organizaciones', label: 'Organizaciones', Icon: Building2 },
 ];

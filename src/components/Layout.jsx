@@ -17,10 +17,24 @@ export default function Layout() {
 
   const onOpenModal = () => setModalOpen(true);
 
-  // Cada cambio de ruta vuelve arriba. El drawer lo cierra su propio onNavigate.
+  // Cada cambio de ruta vuelve arriba; con hash, baja al ancla. El drawer lo cierra su propio onNavigate.
+  // El destino puede tardar en existir (RouteFade monta la página nueva tras la salida de la anterior),
+  // por eso se reintenta por rAF durante ~1s en vez de buscar el nodo una sola vez.
   useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      let tries = 0;
+      let raf;
+      const seek = () => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else if (tries++ < 60) raf = requestAnimationFrame(seek);
+      };
+      seek();
+      return () => cancelAnimationFrame(raf);
+    }
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--canvas-card)' }}>
