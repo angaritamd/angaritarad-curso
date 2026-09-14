@@ -1,4 +1,4 @@
-import { House, Compass, BookOpen, Bot, GraduationCap, CreditCard, CircleHelp, Building2 } from 'lucide-react';
+import { House, Compass, BookOpen, Bot, BotMessageSquare, GraduationCap, CreditCard, CircleHelp, Building2 } from 'lucide-react';
 
 // Orden fijo del rail. Organizaciones siempre al final.
 export const NAV_ITEMS = [
@@ -6,6 +6,7 @@ export const NAV_ITEMS = [
   { to: '/introduccion', label: 'Introducción', Icon: Compass },
   { to: '/contenido', label: 'Contenido', Icon: BookOpen },
   { to: '/agente', label: 'El agente en tu consulta', Icon: Bot },
+  { to: '/bots', label: 'Tu Bot de IA', Icon: BotMessageSquare },
   { to: '/instructor', label: 'Instructor', Icon: GraduationCap },
   // El hash lleva directo a la sección de tarifas (id="precio"); Layout resuelve el scroll.
   { to: '/precio#precio', label: 'Precio', Icon: CreditCard },

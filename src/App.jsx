@@ -11,6 +11,7 @@ import Instructor from './components/Instructor';
 import EsParaTi from './components/EsParaTi';
 import PricingSimposio from './components/PricingSimposio';
 import AsistenteIncluido from './components/AsistenteIncluido';
+import TuBotIA from './components/TuBotIA';
 import Organizaciones from './components/Organizaciones';
 import { FAQ, FinalCTA } from './components/Sections';
 
@@ -63,6 +64,14 @@ function Agente() {
   );
 }
 
+function Bots() {
+  return (
+    <main>
+      <TuBotIA />
+    </main>
+  );
+}
+
 function InstructorPage() {
   return (
     <main>
@@ -109,6 +118,7 @@ export default function App() {
         {/* La ruta vieja sigue viva para no romper enlaces ya compartidos. */}
         <Route path="/temario" element={<Navigate to="/contenido" replace />} />
         <Route path="/agente" element={<Agente />} />
+        <Route path="/bots" element={<Bots />} />
         <Route path="/instructor" element={<InstructorPage />} />
         <Route path="/precio" element={<Precio />} />
         <Route path="/preguntas" element={<Preguntas />} />
