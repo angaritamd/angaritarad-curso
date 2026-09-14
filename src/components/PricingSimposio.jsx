@@ -1,4 +1,5 @@
 // Sección de precios lanzada el día del IV Simposio (2026-09-11).
+// Reprecio 2026-09-13: $450.000 único / 2×$238.000 — reemplaza los $882.000 con 10% de Simposio, que ya no aplica.
 // Contenido y paleta teal vienen del welcome pack del curso (ver public/welcome.html);
 // por eso la sección es una "isla clara" sobre el canvas oscuro del sitio.
 // Botones de pago: placeholder visual sin acción (title="Coming soon") hasta tener pasarela (Wompi/PSE).
@@ -65,21 +66,18 @@ export default function PricingSimposio() {
             <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: HINT, marginBottom: '1rem' }}>Pago único</div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: MUTED, marginBottom: '0.5rem' }}>Precio regular</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEXT, lineHeight: 1 }}>$980.000</div>
-              <div style={{ fontSize: 13, color: MUTED, marginTop: '0.5rem' }}>Pesos colombianos</div>
-            </div>
-
-            <div style={{ background: TEAL_LIGHT, border: `1.5px solid ${TEAL}`, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.25rem' }}>🎉 Descuento por Simposio</div>
-              <div style={{ fontSize: 12, color: TEAL_DARK, lineHeight: 1.6 }}>
-                10% de descuento aplicado ahora por ser asistente al IV Simposio de Imágenes Diagnósticas.
+              <div style={{ fontSize: 13, color: MUTED, marginBottom: '0.5rem' }}>Precio total</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEXT, lineHeight: 1 }}>$450.000</div>
+              <div style={{ fontSize: 13, color: MUTED, marginTop: '0.5rem' }}>
+                Pesos colombianos · <s style={{ color: HINT }}>antes $882.000</s>
               </div>
             </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: MUTED, marginBottom: '0.5rem' }}>Tu precio con descuento</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 600, color: TEAL, lineHeight: 1 }}>$882.000</div>
+            <div style={{ background: TEAL_LIGHT, border: `1.5px solid ${TEAL}`, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.25rem' }}>🤖 Asistente de IA incluido</div>
+              <div style={{ fontSize: 12, color: TEAL_DARK, lineHeight: 1.6 }}>
+                Configuras tu propio asistente de IA con créditos incluidos, que sigue trabajando para ti después del curso.
+              </div>
             </div>
 
             <button title="Coming soon" style={btnStyle}>Pagar ahora</button>
@@ -99,8 +97,10 @@ export default function PricingSimposio() {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem' }}>Por cuota</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEAL, lineHeight: 1 }}>$441.000</div>
-              <div style={{ fontSize: 13, color: TEAL_DARK, marginTop: '0.5rem' }}>Pesos colombianos</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 32, fontWeight: 600, color: TEAL, lineHeight: 1 }}>$238.000</div>
+              <div style={{ fontSize: 13, color: TEAL_DARK, marginTop: '0.5rem' }}>
+                Pesos colombianos · <s style={{ color: HINT }}>antes $441.000 c/u</s>
+              </div>
             </div>
 
             <div style={{ background: AMBER_LIGHT, border: `1.5px solid ${AMBER}`, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem' }}>
@@ -111,7 +111,7 @@ export default function PricingSimposio() {
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem', fontWeight: 600 }}>Total con descuento: $882.000</div>
+              <div style={{ fontSize: 13, color: TEAL_DARK, marginBottom: '0.5rem', fontWeight: 600 }}>Total: $476.000</div>
             </div>
 
             <button title="Coming soon" style={btnStyle}>Pagar en 2 cuotas</button>
@@ -154,7 +154,7 @@ export default function PricingSimposio() {
         {/* CTA Bottom */}
         <div style={{ textAlign: 'center', marginTop: '2.5rem', padding: '2rem', background: TEAL_LIGHT, borderRadius: 12 }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, color: TEAL_DARK, marginBottom: '0.75rem' }}>¿Listo para comenzar?</h3>
-          <p style={{ fontSize: 14, color: TEAL, marginBottom: '1.5rem' }}>Los cupos del Simposio tienen este 10% de descuento. Expira cuando comience el curso el 1 de octubre.</p>
+          <p style={{ fontSize: 14, color: TEAL, marginBottom: '1.5rem' }}>El curso comienza el 1 de octubre. Asegura tu cupo antes del inicio.</p>
           <button title="Coming soon" style={{ ...btnStyle, width: 'auto', padding: '0.875rem 2rem', fontSize: 15 }}>Inscribirse ahora</button>
         </div>
 

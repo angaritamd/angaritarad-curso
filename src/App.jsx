@@ -10,6 +10,7 @@ import PracticalDemo from './components/PracticalDemo';
 import Instructor from './components/Instructor';
 import EsParaTi from './components/EsParaTi';
 import PricingSimposio from './components/PricingSimposio';
+import AsistenteIncluido from './components/AsistenteIncluido';
 import Organizaciones from './components/Organizaciones';
 import { FAQ, FinalCTA } from './components/Sections';
 
@@ -75,6 +76,7 @@ function Precio() {
   return (
     <main>
       <EsParaTi />
+      <AsistenteIncluido />
       <PricingSimposio />
       <FinalCTA onOpenModal={onOpenModal} />
     </main>
