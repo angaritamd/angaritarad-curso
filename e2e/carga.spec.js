@@ -44,13 +44,31 @@ test.describe('Carga de la página principal', () => {
     await expect(
       page.getByRole('heading', { name: /Inversión en tu desarrollo/i })
     ).toBeVisible();
-    await expect(page.getByText('Descuento por Simposio')).toBeVisible();
+    // Reprecio 2026-09-13: el "Descuento por Simposio" ya no existe; lo que
+    // identifica la sección hoy es el value stack y los precios vigentes.
+    await expect(page.getByText('Tu inscripción incluye')).toBeVisible();
+    await expect(page.getByText('$450.000')).toBeVisible();
+    await expect(page.getByText('$238.000')).toBeVisible();
     await expect(
       page.getByRole('button', { name: /Pagar ahora/i })
     ).toBeVisible();
     await expect(
       page.getByRole('button', { name: /Inscribirse ahora/i })
     ).toBeVisible();
+  });
+
+  test('el toggle EN muestra el precio en USD con TRM de referencia', async ({ page }) => {
+    await page.goto('/precio');
+
+    await page.getByRole('group', { name: 'Idioma / Language' }).getByRole('button', { name: 'EN' }).click();
+    await expect(page.getByText('$136.36')).toBeVisible();
+    await expect(page.getByText('$72.12')).toBeVisible();
+    await expect(page.getByText(/1 USD ≈ 3,300 COP/).first()).toBeVisible();
+
+    // Volver a ES restaura el COP (y el default de otros tests no se contamina
+    // porque cada test corre con storage limpio).
+    await page.getByRole('group', { name: 'Idioma / Language' }).getByRole('button', { name: 'ES' }).click();
+    await expect(page.getByText('$450.000')).toBeVisible();
   });
 
   test('el formulario de registro se abre desde el header', async ({ page }) => {

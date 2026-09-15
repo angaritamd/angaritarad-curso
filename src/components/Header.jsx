@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { BODY, CANVAS } from '../theme';
+import LangToggle from './LangToggle';
 
 // Fondo unificado con angaritarad.com (#16150f). La navegación primaria vive
 // en el Sidebar, así que el header se mantiene mínimo: logo + CTA.
@@ -74,6 +75,8 @@ export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) 
             <button onClick={onOpenModal} className="btn-brand" style={{ padding: '9px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
               Solicitar acceso
             </button>
+            {/* Aditivo: selector de idioma al final del header, no altera los links existentes */}
+            <LangToggle />
           </div>
         </div>
       </header>
