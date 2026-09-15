@@ -1,8 +1,86 @@
 import { useState } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
 import { AURORA_MINT, BRAND, HAIRLINE } from '../theme';
+import { useLang } from '../i18n';
+
+// Metadatos estructurales de los campos (no traducibles): orden, tipo, key,
+// required. Los textos (label/placeholder) viven en STR para que sean bilingües.
+const FIELDS_META = [
+  { key: 'nombre', type: 'text', required: true },
+  { key: 'email', type: 'email', required: true },
+  { key: 'especialidad', type: 'text', required: false },
+  { key: 'whatsapp', type: 'tel', required: true },
+];
+
+const linkStyle = { color: 'var(--aurora-mint)', fontWeight: 600 };
+
+// ES es byte-por-byte el texto original (tests e2e de Playwright lo aseveran).
+const STR = {
+  es: {
+    preRegistro: 'Pre-registro gratuito',
+    titulo: 'Reserva tu cupo',
+    fields: {
+      nombre: { label: 'Nombre completo', placeholder: 'Dr. Juan García' },
+      email: { label: 'Correo electrónico', placeholder: 'juan@clinica.com' },
+      especialidad: { label: 'Especialidad', placeholder: 'Medicina General, Medicina Familiar…' },
+      whatsapp: { label: 'WhatsApp (con código de país)', placeholder: '+57 300 000 0000' },
+    },
+    guardando: 'Guardando…',
+    submitBtn: 'Quiero pre-registrarme',
+    privacyIntro: 'Al pre-registrarte aceptas nuestra',
+    privacyLink: 'política de privacidad',
+    successTitle: '¡Listo, quedaste pre-registrado!',
+    successBody: (
+      <>
+        Tu lugar está reservado. El curso inicia el 1 de octubre —{' '}
+        <a
+          href="https://chat.whatsapp.com/DwWQ2Z2HERfEpVNQI8B38g"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={linkStyle}
+        >
+          únete al grupo del curso
+        </a>
+        {' '}para recibir todos los detalles de acceso.
+      </>
+    ),
+    errorMsg: 'Hubo un problema al guardar tu registro. Por favor intenta de nuevo.',
+  },
+  en: {
+    preRegistro: 'Free pre-registration',
+    titulo: 'Reserve your spot',
+    fields: {
+      nombre: { label: 'Full name', placeholder: 'Dr. Juan García' },
+      email: { label: 'Email address', placeholder: 'juan@clinica.com' },
+      especialidad: { label: 'Specialty', placeholder: 'General Medicine, Family Medicine…' },
+      whatsapp: { label: 'WhatsApp (with country code)', placeholder: '+57 300 000 0000' },
+    },
+    guardando: 'Saving…',
+    submitBtn: 'I want to pre-register',
+    privacyIntro: 'By pre-registering you accept our',
+    privacyLink: 'privacy policy',
+    successTitle: "You're pre-registered!",
+    successBody: (
+      <>
+        Your spot is reserved. The course starts October 1st —{' '}
+        <a
+          href="https://chat.whatsapp.com/DwWQ2Z2HERfEpVNQI8B38g"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={linkStyle}
+        >
+          join the course group
+        </a>
+        {' '}to get all the access details.
+      </>
+    ),
+    errorMsg: 'There was a problem saving your registration. Please try again.',
+  },
+};
 
 export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
   const [form, setForm] = useState({ nombre: '', email: '', especialidad: '', whatsapp: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -45,7 +123,7 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
       setSuccess(true);
     } catch {
       // El guardado falló: mostrar error real, no un falso éxito.
-      setError('Hubo un problema al guardar tu registro. Por favor intenta de nuevo.');
+      setError(t.errorMsg);
     } finally {
       setLoading(false);
     }
@@ -57,9 +135,9 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
         {/* Header */}
         <div style={{ padding: '24px 28px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
-            <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>Pre-registro gratuito</span>
+            <span className="mono-label" style={{ display: 'block', marginBottom: 8 }}>{t.preRegistro}</span>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 22, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
-              Reserva tu cupo
+              {t.titulo}
             </h2>
           </div>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: 'var(--muted)' }}>
@@ -71,28 +149,14 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
           {success ? (
             <div style={{ textAlign: 'center', padding: '24px 0' }}>
               <CheckCircle2 size={48} color={AURORA_MINT} style={{ margin: '0 auto 16px' }} />
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>¡Listo, quedaste pre-registrado!</h3>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: 20, color: 'var(--ink)', margin: '0 0 8px' }}>{t.successTitle}</h3>
               <p style={{ fontSize: 14, color: 'var(--body)', lineHeight: 1.6 }}>
-                Tu lugar está reservado. El curso inicia el 1 de octubre —{' '}
-                <a
-                  href="https://chat.whatsapp.com/DwWQ2Z2HERfEpVNQI8B38g"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--aurora-mint)', fontWeight: 600 }}
-                >
-                  únete al grupo del curso
-                </a>
-                {' '}para recibir todos los detalles de acceso.
+                {t.successBody}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {[
-                { key: 'nombre', label: 'Nombre completo', type: 'text', placeholder: 'Dr. Juan García', required: true },
-                { key: 'email', label: 'Correo electrónico', type: 'email', placeholder: 'juan@clinica.com', required: true },
-                { key: 'especialidad', label: 'Especialidad', type: 'text', placeholder: 'Medicina General, Medicina Familiar…', required: false },
-                { key: 'whatsapp', label: 'WhatsApp (con código de país)', type: 'tel', placeholder: '+57 300 000 0000', required: true },
-              ].map(field => (
+              {FIELDS_META.map(meta => ({ ...meta, ...t.fields[meta.key] })).map(field => (
                 <div key={field.key}>
                   <label style={{ display: 'block', fontSize: 13, fontWeight: 500, color: 'var(--ink)', marginBottom: 6 }}>{field.label}{field.required && <span style={{ color: 'var(--primary)' }}> *</span>}</label>
                   <input type={field.type} placeholder={field.placeholder} required={field.required} value={form[field.key]}
@@ -107,13 +171,13 @@ export default function RegistrationModal({ isOpen, onClose, onOpenPrivacy }) {
               {error && <p style={{ color: 'var(--error)', fontSize: 13 }}>{error}</p>}
 
               <button type="submit" disabled={loading} className="btn-brand" style={{ width: '100%', justifyContent: 'center', padding: '13px 24px', fontSize: 15, opacity: loading ? 0.7 : 1 }}>
-                {loading ? 'Guardando…' : 'Quiero pre-registrarme'}
+                {loading ? t.guardando : t.submitBtn}
               </button>
 
               <p style={{ fontSize: 11, color: 'var(--muted)', textAlign: 'center', margin: 0 }}>
-                Al pre-registrarte aceptas nuestra{' '}
+                {t.privacyIntro}{' '}
                 <button type="button" onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--aurora-blue)', fontSize: 11, textDecoration: 'underline', padding: 0 }}>
-                  política de privacidad
+                  {t.privacyLink}
                 </button>.
               </p>
             </form>

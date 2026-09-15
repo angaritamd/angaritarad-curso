@@ -1,25 +1,60 @@
 import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { BRAND, BRAND_ACTIVE, INK } from '../theme';
+import { useLang } from '../i18n';
 
-const faqs = [
-  { q: '¿Necesito saber de IA?', a: 'No. Empiezas desde cero; los fundamentos bonus te ponen al día.' },
-  { q: '¿Tengo que programar?', a: 'Nunca. Los talleres y el agente hacen el trabajo técnico; tú aportas el criterio clínico.' },
-  { q: '¿Cuánto tiempo dedico?', a: '2 a 3 horas por semana. Los módulos son cortos y prácticos.' },
-  { q: '¿Qué me llevo al terminar?', a: 'Un asistente clínico activo, un portfolio real y acceso a la comunidad.' },
-];
+// i18n: solo FAQ, FinalCTA y Footer (las secciones "shell"). TargetAudience
+// (¿Para quién es?) queda fuera del alcance de esta tarea.
+const STR = {
+  es: {
+    faqTitle: 'Preguntas frecuentes',
+    faqs: [
+      { q: '¿Necesito saber de IA?', a: 'No. Empiezas desde cero; los fundamentos bonus te ponen al día.' },
+      { q: '¿Tengo que programar?', a: 'Nunca. Los talleres y el agente hacen el trabajo técnico; tú aportas el criterio clínico.' },
+      { q: '¿Cuánto tiempo dedico?', a: '2 a 3 horas por semana. Los módulos son cortos y prácticos.' },
+      { q: '¿Qué me llevo al terminar?', a: 'Un asistente clínico activo, un portfolio real y acceso a la comunidad.' },
+    ],
+    ctaEyebrow: 'Comienza hoy mismo',
+    ctaH2: 'Empieza a usar IA en tu consulta.',
+    ctaSub: 'Un curso práctico para médicos y especialistas.',
+    ctaChecks: ['Desde cero', 'Sin código', 'Talleres prácticos', 'Comunidad de médicos'],
+    ctaBtn: 'Quiero el curso',
+    footerTagline: 'IA aplicada a la práctica médica, para médicos latinoamericanos.',
+    footerCopy: '© 2026 Saludchat SAAS. Bogotá, Colombia.',
+    footerPrivacy: 'Privacidad & Términos',
+  },
+  en: {
+    faqTitle: 'Frequently asked questions',
+    faqs: [
+      { q: 'Do I need to know AI?', a: 'No. You start from zero; the bonus fundamentals get you up to speed.' },
+      { q: 'Do I have to code?', a: 'Never. The workshops and the agent do the technical work; you bring the clinical judgment.' },
+      { q: 'How much time do I need?', a: '2 to 3 hours per week. The modules are short and practical.' },
+      { q: 'What do I walk away with?', a: 'An active clinical assistant, a real portfolio, and access to the community.' },
+    ],
+    ctaEyebrow: 'Start today',
+    ctaH2: 'Start using AI in your practice.',
+    ctaSub: 'A practical course for physicians and specialists.',
+    ctaChecks: ['From scratch', 'No code', 'Hands-on workshops', 'Community of physicians'],
+    ctaBtn: 'I want the course',
+    footerTagline: 'AI applied to medical practice, for Latin American physicians.',
+    footerCopy: '© 2026 Saludchat SAAS. Bogotá, Colombia.',
+    footerPrivacy: 'Privacy & Terms',
+  },
+};
 
 export function FAQ() {
   const [open, setOpen] = useState(null);
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
   return (
     <section style={{ background: 'var(--canvas-mid)', padding: '96px 24px' }}>
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
         <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>FAQ</span>
         <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 40px' }}>
-          Preguntas frecuentes
+          {t.faqTitle}
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {faqs.map((faq, i) => (
+          {t.faqs.map((faq, i) => (
             <div key={i} className="card card--raised">
               <button onClick={() => setOpen(open === i ? null : i)} style={{ width: '100%', textAlign: 'left', padding: '20px 24px', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
                 <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15, color: 'var(--ink)' }}>{faq.q}</span>
@@ -74,18 +109,20 @@ export function TargetAudience() {
 }
 
 export function FinalCTA({ onOpenModal }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
   return (
     <section style={{ background: 'var(--canvas)', padding: '96px 24px' }}>
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-        <span className="mono-label" style={{ color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 24 }}>Comienza hoy mismo</span>
+        <span className="mono-label" style={{ color: 'rgba(255,255,255,0.4)', display: 'block', marginBottom: 24 }}>{t.ctaEyebrow}</span>
         <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.03em', color: 'var(--ink)', margin: '0 0 20px', lineHeight: 1.05 }}>
-          Empieza a usar IA en tu consulta.
+          {t.ctaH2}
         </h2>
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
-          Un curso práctico para médicos y especialistas.
+          {t.ctaSub}
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, maxWidth: 480, margin: '0 auto 40px', textAlign: 'left' }} className="checkmarks-grid">
-          {['Desde cero', 'Sin código', 'Talleres prácticos', 'Comunidad de médicos'].map((item, i) => (
+          {t.ctaChecks.map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
               <span style={{ color: 'var(--aurora-mint)', fontSize: 14, flexShrink: 0 }}>✓</span>
               <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', lineHeight: 1.4 }}>{item}</span>
@@ -95,7 +132,7 @@ export function FinalCTA({ onOpenModal }) {
         <button onClick={onOpenModal} style={{ background: 'var(--primary)', color: 'var(--ink)', padding: '16px 36px', borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 16, fontFamily: 'var(--font-sans)', fontWeight: 500, letterSpacing: '-0.01em', boxShadow: '0 4px 20px rgba(245,78,0,0.3)', transition: 'background 0.2s' }}
           onMouseEnter={e => e.target.style.background = BRAND_ACTIVE}
           onMouseLeave={e => e.target.style.background = BRAND}>
-          Quiero el curso
+          {t.ctaBtn}
         </button>
       </div>
       <style>{`@media (max-width: 480px) { .checkmarks-grid { grid-template-columns: 1fr !important; } }`}</style>
@@ -104,6 +141,8 @@ export function FinalCTA({ onOpenModal }) {
 }
 
 export function Footer({ onOpenPrivacy }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
   return (
     <footer style={{ background: 'var(--canvas-card)', borderTop: '1px solid rgba(255,255,255,0.08)', padding: '48px 24px 32px' }}>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
@@ -116,7 +155,7 @@ export function Footer({ onOpenPrivacy }) {
               <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 14, color: 'var(--ink)', letterSpacing: '-0.01em' }}>AngaritaRad-AI</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', maxWidth: 320, lineHeight: 1.6, margin: 0 }}>
-              IA aplicada a la práctica médica, para médicos latinoamericanos.
+              {t.footerTagline}
             </p>
           </div>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
@@ -135,9 +174,9 @@ export function Footer({ onOpenPrivacy }) {
           </div>
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>© 2026 Saludchat SAAS. Bogotá, Colombia.</span>
+          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>{t.footerCopy}</span>
           <button onClick={onOpenPrivacy} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, color: 'rgba(255,255,255,0.3)', textDecoration: 'underline' }}>
-            Privacidad & Términos
+            {t.footerPrivacy}
           </button>
         </div>
       </div>

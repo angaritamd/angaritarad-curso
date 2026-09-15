@@ -2,19 +2,40 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { BODY, CANVAS } from '../theme';
 import LangToggle from './LangToggle';
+import { useLang } from '../i18n';
 
 // Fondo unificado con angaritarad.com (#16150f). La navegación primaria vive
 // en el Sidebar, así que el header se mantiene mínimo: logo + CTA.
 const BG = CANVAS;
 const TEXT = BODY;
 
+// i18n: solo la announcement bar, el botón CTA y los aria-label del toggle
+// móvil. Los links angaritarad.com/Academy/Blog son nombres propios.
+const STR = {
+  es: {
+    announcement: 'Inscripción abierta · Para médicos y especialistas',
+    cerrarMenu: 'Cerrar menú',
+    abrirMenu: 'Abrir menú',
+    solicitarAcceso: 'Solicitar acceso',
+  },
+  en: {
+    announcement: 'Enrollment open · For physicians and specialists',
+    cerrarMenu: 'Close menu',
+    abrirMenu: 'Open menu',
+    solicitarAcceso: 'Request access',
+  },
+};
+
 export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
+
   return (
     <>
       {/* Announcement bar — mismo fondo institucional */}
       <div style={{ background: BG, textAlign: 'center', padding: '8px 16px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <span className="mono-label" style={{ color: TEXT }}>
-          Inscripción abierta · Para médicos y especialistas
+          {t.announcement}
         </span>
       </div>
 
@@ -26,7 +47,7 @@ export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) 
             <button
               onClick={onToggleMenu}
               className="rail-toggle"
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={menuOpen ? t.cerrarMenu : t.abrirMenu}
               aria-expanded={menuOpen}
               style={{ display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 6, color: TEXT, lineHeight: 0 }}
             >
@@ -73,7 +94,7 @@ export default function Header({ onOpenModal, onToggleMenu, menuOpen = false }) 
               Blog
             </a>
             <button onClick={onOpenModal} className="btn-brand" style={{ padding: '9px 20px', fontSize: 13, whiteSpace: 'nowrap' }}>
-              Solicitar acceso
+              {t.solicitarAcceso}
             </button>
             {/* Aditivo: selector de idioma al final del header, no altera los links existentes */}
             <LangToggle />

@@ -1,8 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../nav';
 import { BRAND, MUTED } from '../theme';
+import { useLang } from '../i18n';
 
-function Item({ to, label, Icon, end, onNavigate }) {
+const STR = {
+  es: {
+    navAriaLabel: 'Secciones del curso',
+    curso: 'Curso',
+    disclaimer: 'Datos de pacientes simulados. Nunca ingreses información real de pacientes.',
+  },
+  en: {
+    navAriaLabel: 'Course sections',
+    curso: 'Course',
+    disclaimer: 'Simulated patient data. Never enter real patient information.',
+  },
+};
+
+function Item({ to, label, Icon, end, onNavigate, lang }) {
   return (
     <NavLink
       to={to}
@@ -23,7 +37,7 @@ function Item({ to, label, Icon, end, onNavigate }) {
       {({ isActive }) => (
         <>
           <Icon size={18} color={isActive ? BRAND : MUTED} style={{ flexShrink: 0 }} />
-          <span>{label}</span>
+          <span>{label[lang] || label.es}</span>
         </>
       )}
     </NavLink>
@@ -31,16 +45,19 @@ function Item({ to, label, Icon, end, onNavigate }) {
 }
 
 export default function Sidebar({ onNavigate }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
+
   return (
-    <nav aria-label="Secciones del curso" style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '24px 12px' }}>
-      <span className="mono-label" style={{ padding: '0 14px', marginBottom: 12, display: 'block' }}>Curso</span>
+    <nav aria-label={t.navAriaLabel} style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '24px 12px' }}>
+      <span className="mono-label" style={{ padding: '0 14px', marginBottom: 12, display: 'block' }}>{t.curso}</span>
       {NAV_ITEMS.map(item => (
-        <Item key={item.to} {...item} onNavigate={onNavigate} />
+        <Item key={item.to} {...item} onNavigate={onNavigate} lang={lang} />
       ))}
 
       <div style={{ marginTop: 'auto', padding: '24px 14px 8px' }}>
         <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--muted)', margin: 0 }}>
-          Datos de pacientes simulados. Nunca ingreses información real de pacientes.
+          {t.disclaimer}
         </p>
       </div>
     </nav>

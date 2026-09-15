@@ -1,66 +1,144 @@
 import { useState } from 'react';
+import { useLang } from '../i18n';
 
-const examples = [
-  {
-    id: 1,
-    label: 'Dictado clínico',
-    user: 'Paciente masculino 65 años con dolor torácico opresivo irradiado a brazo izquierdo, 2 horas de evolución',
-    agent: 'Organizado en formato clínico:\n\nS: Dolor torácico opresivo, irradiado a brazo izquierdo, 2h de evolución\nO: Pendiente signos vitales y examen físico\nA: Sospecha síndrome coronario agudo\nP: ECG urgente, troponinas, monitorización, valoración cardiología',
-  },
-  {
-    id: 2,
-    label: 'Diagnóstico diferencial',
-    user: 'Dx diferencial dolor abdominal en adulto',
-    agent: 'Principales diagnósticos:\n• Apendicitis\n• Colecistitis\n• Pancreatitis\n• Obstrucción intestinal\n\nRed flags:\n• Dolor súbito intenso\n• Signos de irritación peritoneal\n• Inestabilidad hemodinámica',
-  },
-  {
-    id: 3,
-    label: 'Filtro clínico',
-    user: 'Paciente con cefalea intensa súbita, náuseas y vómito',
-    agent: '⚠️ Alerta clínica\nPosible hemorragia subaracnoidea\n\nRed flags activadas:\n• Inicio súbito\n• Intensidad máxima\n• Síntomas neurológicos\n\nSiguiente paso: TAC cerebral urgente',
-  },
-  {
-    id: 4,
-    label: 'Remisión en segundos',
-    user: 'Remisión a medicina interna: paciente con HTA no controlada pese a manejo dual',
-    agent: 'Remisión lista:\nMotivo: HTA no controlada\nManejo actual: terapia dual\nSolicitud: valoración y ajuste por medicina interna\nAdjuntos sugeridos: últimas cifras de TA y paraclínicos\n\nRevisa, ajusta y firma — tú tienes la última palabra.',
-  },
-];
-
-const cards = [
-  {
-    label: 'Dictado → historia clínica',
-    user: 'Mujer 58a dolor abdominal agudo, fiebre y náuseas. Sospecha de apendicitis. ¿Puedes analizar el caso?',
-    lines: [
-      { tag: 'S:', text: 'Mujer 58a, dolor abdominal agudo, fiebre y náuseas' },
-      { tag: 'O:', text: 'Signos vitales: T 38.9°C, FC 110 lpm. Abdomen con defensa en cuadrante inferior derecho' },
-      { tag: 'A:', text: 'Sospecha de apendicitis aguda' },
-      { tag: 'P:', text: 'Realizar ecografía abdominal · Solicitar valoración quirúrgica' },
+const STR = {
+  es: {
+    eyebrow: 'Así funciona',
+    h2: 'Tu agente en la práctica clínica',
+    sub: 'Estas no son simulaciones. Son los tipos de consultas que resuelve el agente en tiempo real.',
+    whatsappLabel: 'Angaritarad-AI · WhatsApp',
+    respuestaLabel: 'RESPUESTA',
+    conversacionesReales: 'Conversaciones reales',
+    ctaBtn: 'Activar mi agente ahora',
+    examples: [
+      {
+        id: 1,
+        label: 'Dictado clínico',
+        user: 'Paciente masculino 65 años con dolor torácico opresivo irradiado a brazo izquierdo, 2 horas de evolución',
+        agent: 'Organizado en formato clínico:\n\nS: Dolor torácico opresivo, irradiado a brazo izquierdo, 2h de evolución\nO: Pendiente signos vitales y examen físico\nA: Sospecha síndrome coronario agudo\nP: ECG urgente, troponinas, monitorización, valoración cardiología',
+      },
+      {
+        id: 2,
+        label: 'Diagnóstico diferencial',
+        user: 'Dx diferencial dolor abdominal en adulto',
+        agent: 'Principales diagnósticos:\n• Apendicitis\n• Colecistitis\n• Pancreatitis\n• Obstrucción intestinal\n\nRed flags:\n• Dolor súbito intenso\n• Signos de irritación peritoneal\n• Inestabilidad hemodinámica',
+      },
+      {
+        id: 3,
+        label: 'Filtro clínico',
+        user: 'Paciente con cefalea intensa súbita, náuseas y vómito',
+        agent: '⚠️ Alerta clínica\nPosible hemorragia subaracnoidea\n\nRed flags activadas:\n• Inicio súbito\n• Intensidad máxima\n• Síntomas neurológicos\n\nSiguiente paso: TAC cerebral urgente',
+      },
+      {
+        id: 4,
+        label: 'Remisión en segundos',
+        user: 'Remisión a medicina interna: paciente con HTA no controlada pese a manejo dual',
+        agent: 'Remisión lista:\nMotivo: HTA no controlada\nManejo actual: terapia dual\nSolicitud: valoración y ajuste por medicina interna\nAdjuntos sugeridos: últimas cifras de TA y paraclínicos\n\nRevisa, ajusta y firma — tú tienes la última palabra.',
+      },
+    ],
+    cards: [
+      {
+        label: 'Dictado → historia clínica',
+        user: 'Mujer 58a dolor abdominal agudo, fiebre y náuseas. Sospecha de apendicitis. ¿Puedes analizar el caso?',
+        lines: [
+          { tag: 'S:', text: 'Mujer 58a, dolor abdominal agudo, fiebre y náuseas' },
+          { tag: 'O:', text: 'Signos vitales: T 38.9°C, FC 110 lpm. Abdomen con defensa en cuadrante inferior derecho' },
+          { tag: 'A:', text: 'Sospecha de apendicitis aguda' },
+          { tag: 'P:', text: 'Realizar ecografía abdominal · Solicitar valoración quirúrgica' },
+        ],
+      },
+      {
+        label: 'Documentación sin fricción',
+        user: '¿Cómo documento más rápido mi consulta de hoy?',
+        lines: [
+          { tag: 'Flujo:', text: null },
+          { tag: '·', text: 'Dicta la nota al terminar cada consulta' },
+          { tag: '·', text: 'El agente la estructura como nota clínica' },
+          { tag: '·', text: 'Revisas, ajustas y firmas — tú decides' },
+        ],
+      },
+      {
+        label: 'Angaritarad-AI',
+        isConsole: true,
+        user: 'Paciente 65a dolor torácico opresivo...',
+        response: [
+          'S: Dolor opresivo, irradiado, 2h',
+          'A: SCA probable',
+          'P: ECG + troponinas urgente',
+        ],
+      },
     ],
   },
-  {
-    label: 'Documentación sin fricción',
-    user: '¿Cómo documento más rápido mi consulta de hoy?',
-    lines: [
-      { tag: 'Flujo:', text: null },
-      { tag: '·', text: 'Dicta la nota al terminar cada consulta' },
-      { tag: '·', text: 'El agente la estructura como nota clínica' },
-      { tag: '·', text: 'Revisas, ajustas y firmas — tú decides' },
+  en: {
+    eyebrow: 'How it works',
+    h2: 'Your agent in real clinical practice',
+    sub: 'These are not simulations. These are the types of queries the agent resolves in real time.',
+    whatsappLabel: 'Angaritarad-AI · WhatsApp',
+    respuestaLabel: 'RESPONSE',
+    conversacionesReales: 'Real conversations',
+    ctaBtn: 'Activate my agent now',
+    examples: [
+      {
+        id: 1,
+        label: 'Clinical dictation',
+        user: '65-year-old male patient with crushing chest pain radiating to the left arm, 2 hours of evolution',
+        agent: 'Organized in clinical format:\n\nS: Crushing chest pain, radiating to the left arm, 2h of evolution\nO: Vital signs and physical exam pending\nA: Suspected acute coronary syndrome\nP: Urgent ECG, troponins, monitoring, cardiology evaluation',
+      },
+      {
+        id: 2,
+        label: 'Differential diagnosis',
+        user: 'Differential dx for abdominal pain in adults',
+        agent: 'Main diagnoses:\n• Appendicitis\n• Cholecystitis\n• Pancreatitis\n• Bowel obstruction\n\nRed flags:\n• Sudden severe pain\n• Signs of peritoneal irritation\n• Hemodynamic instability',
+      },
+      {
+        id: 3,
+        label: 'Clinical filter',
+        user: 'Patient with sudden severe headache, nausea and vomiting',
+        agent: '⚠️ Clinical alert\nPossible subarachnoid hemorrhage\n\nRed flags triggered:\n• Sudden onset\n• Maximum intensity\n• Neurological symptoms\n\nNext step: Urgent brain CT',
+      },
+      {
+        id: 4,
+        label: 'Referral in seconds',
+        user: 'Referral to internal medicine: patient with uncontrolled hypertension despite dual therapy',
+        agent: 'Referral ready:\nReason: Uncontrolled hypertension\nCurrent management: dual therapy\nRequest: evaluation and adjustment by internal medicine\nSuggested attachments: latest BP readings and lab results\n\nReview, adjust and sign — you have the final say.',
+      },
+    ],
+    cards: [
+      {
+        label: 'Dictation → clinical note',
+        user: '58yo woman, acute abdominal pain, fever and nausea. Suspected appendicitis. Can you analyze the case?',
+        lines: [
+          { tag: 'S:', text: '58yo woman, acute abdominal pain, fever and nausea' },
+          { tag: 'O:', text: 'Vital signs: T 38.9°C, HR 110 bpm. Abdomen with guarding in the right lower quadrant' },
+          { tag: 'A:', text: 'Suspected acute appendicitis' },
+          { tag: 'P:', text: 'Order abdominal ultrasound · Request surgical evaluation' },
+        ],
+      },
+      {
+        label: 'Frictionless documentation',
+        user: 'How can I document today’s visit faster?',
+        lines: [
+          { tag: 'Flow:', text: null },
+          { tag: '·', text: 'Dictate the note after each visit' },
+          { tag: '·', text: 'The agent structures it as a clinical note' },
+          { tag: '·', text: 'You review, adjust and sign — you decide' },
+        ],
+      },
+      {
+        label: 'Angaritarad-AI',
+        isConsole: true,
+        user: '65yo patient with crushing chest pain...',
+        response: [
+          'S: Crushing pain, radiating, 2h',
+          'A: Probable ACS',
+          'P: Urgent ECG + troponins',
+        ],
+      },
     ],
   },
-  {
-    label: 'Angaritarad-AI',
-    isConsole: true,
-    user: 'Paciente 65a dolor torácico opresivo...',
-    response: [
-      'S: Dolor opresivo, irradiado, 2h',
-      'A: SCA probable',
-      'P: ECG + troponinas urgente',
-    ],
-  },
-];
+};
 
-function ChatCard({ card }) {
+function ChatCard({ card, respuestaLabel }) {
   if (card.isConsole) {
     return (
       <div style={{ background: 'var(--canvas-card)', borderRadius: 16, padding: 24, border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 16, height: '100%' }}>
@@ -72,7 +150,7 @@ function ChatCard({ card }) {
           <span style={{ fontSize: 13, color: 'var(--muted)' }}>{card.user}</span>
         </div>
         <div style={{ background: 'rgba(245,78,0,0.12)', border: '1px solid rgba(245,78,0,0.25)', borderRadius: 8, padding: '12px 14px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', display: 'block', marginBottom: 8 }}>RESPUESTA</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', display: 'block', marginBottom: 8 }}>{respuestaLabel}</span>
           {card.response.map((line, i) => (
             <div key={i} style={{ fontSize: 14, color: 'var(--ink)', lineHeight: 1.6 }}>{line}</div>
           ))}
@@ -108,24 +186,26 @@ function ChatCard({ card }) {
 }
 
 export default function PracticalDemo({ onOpenModal }) {
+  const lang = useLang();
+  const t = STR[lang] || STR.es;
   const [active, setActive] = useState(0);
 
   return (
     <section id="practica" style={{ background: 'var(--canvas)', padding: '96px 24px' }}>
       <div style={{ maxWidth: 1120, margin: '0 auto' }}>
         <div style={{ marginBottom: 56 }}>
-          <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>Así funciona</span>
+          <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>{t.eyebrow}</span>
           <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', letterSpacing: '-0.02em', color: 'var(--ink)', margin: '0 0 16px' }}>
-            Tu agente en la práctica clínica
+            {t.h2}
           </h2>
           <p style={{ fontSize: 17, color: 'var(--body)', maxWidth: 520, margin: 0, lineHeight: 1.6 }}>
-            Estas no son simulaciones. Son los tipos de consultas que resuelve el agente en tiempo real.
+            {t.sub}
           </p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 32, marginBottom: 64 }} className="demo-grid">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {examples.map((ex, i) => (
+            {t.examples.map((ex, i) => (
               <button key={ex.id} onClick={() => setActive(i)} style={{
                 textAlign: 'left', padding: '12px 16px', borderRadius: 8, border: 'none', cursor: 'pointer',
                 background: active === i ? 'var(--canvas-card)' : 'transparent',
@@ -139,33 +219,33 @@ export default function PracticalDemo({ onOpenModal }) {
           <div className="card" style={{ padding: 24 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, paddingBottom: 16, borderBottom: '1px solid var(--hairline)' }}>
               <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--aurora-mint)' }} />
-              <span className="mono-label">Angaritarad-AI · WhatsApp</span>
+              <span className="mono-label">{t.whatsappLabel}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
               <div style={{ background: 'var(--canvas-card)', color: 'var(--ink)', borderRadius: '16px 16px 4px 16px', padding: '10px 14px', maxWidth: '65%', fontSize: 14, lineHeight: 1.5 }}>
-                {examples[active].user}
+                {t.examples[active].user}
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
               <div style={{ background: 'var(--canvas-card)', border: '1px solid var(--hairline)', borderRadius: '16px 16px 16px 4px', padding: '10px 14px', maxWidth: '75%', fontSize: 14, lineHeight: 1.6, color: 'var(--ink)', whiteSpace: 'pre-line' }}>
-                {examples[active].agent}
+                {t.examples[active].agent}
               </div>
             </div>
           </div>
         </div>
 
         <div style={{ borderTop: '1px solid var(--hairline)', paddingTop: 48 }}>
-          <span className="mono-label" style={{ display: 'block', marginBottom: 24 }}>Conversaciones reales</span>
+          <span className="mono-label" style={{ display: 'block', marginBottom: 24 }}>{t.conversacionesReales}</span>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, alignItems: 'stretch' }} className="cards-grid">
-            {cards.map((card, i) => (
-              <ChatCard key={i} card={card} />
+            {t.cards.map((card, i) => (
+              <ChatCard key={i} card={card} respuestaLabel={t.respuestaLabel} />
             ))}
           </div>
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 48 }}>
           <button onClick={onOpenModal} className="btn-brand" style={{ fontSize: 15, padding: '14px 32px' }}>
-            Activar mi agente ahora
+            {t.ctaBtn}
           </button>
         </div>
       </div>
