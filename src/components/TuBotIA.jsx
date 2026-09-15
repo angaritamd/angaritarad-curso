@@ -50,6 +50,14 @@ const STR = {
     ],
     balanceLabel: 'Balance de créditos',
     caption: 'Costos y balances ilustrativos: los valores finales de cada bot se definen contigo en el taller.',
+    poeLabel: 'Tu bot, después del curso',
+    poeTitle: 'Así se ve: tu bot vive en Poe',
+    poeImgAlt: 'Interfaz de Poe mostrando el bot personalizado Bot-angaritarad',
+    poeBody1: 'Durante el curso recibes tu propio bot dentro de Poe, la app de chat donde conviven los principales modelos de IA. Llega ya configurado y con tu bolsa de créditos precargada: entras y empiezas a usarlo.',
+    // TODO: especificar el mecanismo real de validación del primer mensaje
+    // (¿teléfono registrado? ¿código único de inscripción?) cuando esté definido.
+    poeBody2: 'En tu primer mensaje, el bot valida quién eres para reconocerte como estudiante del curso. A partir de ahí guarda tu contexto: tus casos, tu especialidad y tu forma de trabajar quedan disponibles en cada conversación futura.',
+    poeBody3: 'El resultado: no arrancas de cero en cada chat. El bot ya sabe con quién está hablando y sigue trabajando sobre lo que tú — no un usuario genérico — necesitas.',
     creditosLabel: 'Cómo funcionan los créditos',
     creditos: [
       {
@@ -94,6 +102,12 @@ const STR = {
     ],
     balanceLabel: 'Credit balance',
     caption: 'Illustrative costs and balances: final values for each bot are defined with you during the workshop.',
+    poeLabel: 'Your bot, after the course',
+    poeTitle: 'This is what it looks like: your bot lives in Poe',
+    poeImgAlt: 'Poe interface showing the personalized Bot-angaritarad bot',
+    poeBody1: 'During the course you receive your own bot inside Poe, the chat app where the leading AI models live side by side. It arrives already configured and with your credit bag preloaded: you sign in and start using it.',
+    poeBody2: 'In your first message, the bot verifies who you are to recognize you as a course student. From then on it keeps your context: your cases, your specialty, and the way you work stay available in every future conversation.',
+    poeBody3: 'The result: you never start from zero in a chat. The bot already knows who it is talking to and keeps working on what you — not a generic user — need.',
     creditosLabel: 'How credits work',
     creditos: [
       {
@@ -175,6 +189,24 @@ export default function TuBotIA() {
           {t.caption}
         </p>
 
+        {/* Tu bot en Poe — bloque aditivo (2026-09-16): captura real de la interfaz
+            con el copy de personalización. No toca las secciones vecinas. */}
+        <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>{t.poeLabel}</span>
+        <div className="card card--static poe-grid" style={{ padding: '32px', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 32, alignItems: 'center', marginBottom: 48 }}>
+          <img
+            src="/img/poe-bot-angaritarad.webp"
+            alt={t.poeImgAlt}
+            loading="lazy"
+            style={{ width: '100%', maxWidth: '100%', height: 'auto', display: 'block', borderRadius: 'var(--r-lg)', border: '1px solid var(--hairline)' }}
+          />
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 18, color: 'var(--ink)', margin: '0 0 12px', letterSpacing: '-0.01em' }}>{t.poeTitle}</h3>
+            <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--body)', margin: '0 0 12px' }}>{t.poeBody1}</p>
+            <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--body)', margin: '0 0 12px' }}>{t.poeBody2}</p>
+            <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--ink)', margin: 0 }}>{t.poeBody3}</p>
+          </div>
+        </div>
+
         {/* Sistema de créditos */}
         <span className="mono-label" style={{ display: 'block', marginBottom: 16 }}>{t.creditosLabel}</span>
         <div className="bots-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 48 }}>
@@ -198,7 +230,10 @@ export default function TuBotIA() {
         </p>
 
       </div>
-      <style>{`@media (max-width: 900px) { #tu-bot .bots-grid { grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`@media (max-width: 900px) {
+        #tu-bot .bots-grid { grid-template-columns: 1fr !important; }
+        #tu-bot .poe-grid { grid-template-columns: 1fr !important; }
+      }`}</style>
     </section>
   );
 }
